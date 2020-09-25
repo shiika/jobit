@@ -1,0 +1,97 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+// home component
+
+.home {
+  @include media-breakpoint-down(md) {
+    background: url("../../img/avi-richards-Z3ownETsdNQ-unsplash.jpg") no-repeat center center scroll;
+    background-size: cover;
+
+    &__heading {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h3,
+    p {
+      color: white;
+    }
+  }
+
+}
+
+@include media-breakpoint-down(sm) {
+  .carousel {
+    text-align: center;
+
+    &__desc {
+      padding-top: 0;
+    }
+
+    &__img {
+      align-items: center;
+    }
+  }
+
+  .swiper-container {
+
+    .swiper-slide--3 {
+
+      .carousel__desc {
+        padding: 2rem 0;
+      }
+
+      .carousel__img {
+
+        img {
+          height: 360px;
+        }
+      }
+    }
+  }
+
+  .testimonials {
+
+    &__heading {
+      display: flex;
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+
+      &__icon {
+
+        svg {
+          height: 50px;
+        }
+      }
+    }
+
+    &__item {
+
+      &__message {
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &__profile {
+      top: 71%;
+    }
+  }
+
+  .category {
+
+    &__heading {
+
+      &::after {
+        width: 20%;
+      }
+    }
+  }
+}

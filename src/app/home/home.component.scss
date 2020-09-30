@@ -3,7 +3,6 @@
 .home {
 
   &__heading {
-    border-radius: 30% 70% 70% 30% / 30% 50% 50% 70%;
     margin-bottom: 3rem;
 
     h1 {
@@ -28,7 +27,7 @@
         &:nth-child(2) {
           img {
             position: relative;
-            top: -4rem;
+            top: -2rem;
             animation-delay: 6s;
             animation-name: imageAnimation-2;
           }
@@ -220,19 +219,28 @@
   }
 
   &__item {
-    padding: 0 0.3rem;
 
     &__heading {
-      font-size: 1rem;
+      font-size: 1.2rem;
       margin-top: 1.5rem;
     }
 
     .list-group {
 
       &-item {
-        font-size: 0.8rem;
-        padding: 0.5rem 0;
+        font-size: 1rem;
+        padding: 0.3rem 0;
         border: none;
+      }
+    }
+
+    &__img {
+      position: relative;
+      
+      p {
+        position: absolute;
+        bottom: 0;
+        left: 7px;
       }
     }
   }
@@ -242,7 +250,7 @@
 .myCard {
   padding: 4rem 0;
 
-  .col-12 {
+  &__cont {
     box-shadow: 3px 1px 14px 0 rgba(0, 0, 0, 0.4);
     padding: 2rem 1rem;
     border-radius: 15px;

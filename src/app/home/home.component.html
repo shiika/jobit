@@ -2,7 +2,7 @@
   <div class="home__heading vh-100 d-flex align-items-center">
     <div class="container">
       <div class="row d-flex">
-        <div class="col-12 col-lg-6 home__heading__desc d-flex flex-column justify-content-center">
+        <div class="col-12 col-md-6 home__heading__desc d-flex flex-column justify-content-center">
           <h3>Get started</h3>
           <h1>
             Hire Experts &<br>
@@ -18,15 +18,27 @@
           <p class="mt-4">Get your dream job <a href="#" class="text-primary">Sigup for free now</a></p>
         </div>
 
-        <div class="col-md-6 home__heading__img d-none d-lg-flex" appSlideshow>
+        <div class="col-12 col-md-6 home__heading__img d-flex">
           <div class="img-container">
-            <img src="../../assets/img/linkedin-sales-navigator-EI50ZDA-l8Y-unsplash.jpg" alt="Employee">
+            <picture>
+              <source media="(max-width: 768px)" srcset="../../assets/img/pexels-elijah-o'donnell-4066041.jpg">
+              <source media="(min-width: 769px)" srcset="../../assets/img/linkedin-sales-navigator-EI50ZDA-l8Y-unsplash.jpg">
+              <img src="../../assets/img/linkedin-sales-navigator-EI50ZDA-l8Y-unsplash.jpg" alt="Employee">
+            </picture>
           </div>
           <div class="img-container">
-            <img src="../../assets/img/linkedin-sales-navigator-wS73LE0GnKs-unsplash.jpg" alt="Employee">
+            <picture>
+              <source media="(max-width: 768px)" srcset="../../assets/img/pexels-cottonbro-4069290.jpg">
+              <source media="(min-width: 769px)" srcset="../../assets/img/linkedin-sales-navigator-wS73LE0GnKs-unsplash.jpg">
+              <img src="../../assets/img/linkedin-sales-navigator-wS73LE0GnKs-unsplash.jpg" alt="Employee">
+            </picture>
           </div>
           <div class="img-container">
-            <img src="../../assets/img/annie-spratt-MChSQHxGZrQ-unsplash.jpg" alt="Employee">
+            <picture>
+              <source media="(max-width: 768px)" srcset="../../assets/img/pexels-josue-verdejo-4327409.jpg">
+              <source media="(min-width: 769px)" srcset="../../assets/img/annie-spratt-MChSQHxGZrQ-unsplash.jpg">
+              <img src="../../assets/img/annie-spratt-MChSQHxGZrQ-unsplash.jpg" alt="Employee">
+            </picture>
           </div>
         </div>
       </div>
@@ -187,13 +199,10 @@
     <div class="row">
       <h1 class="category__heading text-capitalize col-12 mb-5">Browse jobs by category</h1>
       <div class="col-12 col-md-3 category__item">
-        <img src="../../assets/img/thought-catalog-505eectW54k-unsplash.jpg" alt="office" class="mw-100">
-        <button type="button" class="btn btn-outline-primary d-md-none d-block mt-4 w-100 mx-auto">
-          Browse More Jobs
-          <svg style="margin-top: -2px; margin-left: 6px;" class="ml-3 " width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-          </svg>
-        </button>
+        <div class="category__item__img w-100">
+          <img src="../../assets/img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg" alt="office" class="mw-100">
+          <p class="text-white font-weight-bold mb-0">Sales Jobs</p>
+        </div>
         <div class="category__item__container">
 
           <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
@@ -244,8 +253,12 @@
         </div>
       </div>
       <div class="col-12 col-md-3 category__item">
-        <img src="../../assets/img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg" alt="office" class="mw-100">
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+        <div class="category__item__img w-100">
+          <img src="../../assets/img/john-schnobrich-FlPc9_VocJ4-unsplash.jpg" alt="office" class="mw-100">
+          <p class="text-white font-weight-bold mb-0">Sales Jobs</p>
+        </div>
+        <div class="category__item__container">
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
         <ul class="list-group">
           <li class="list-group-item list-group-item-action">
             <a href="#" class="text-dark">Financial Manager Jobs</a>
@@ -290,102 +303,115 @@
             <a href="#" class="text-dark">Financial Manager Jobs</a>
           </li>
         </ul>
+        </div>
       </div>
       <div class="col-12 col-md-3 category__item">
-        <img src="../../assets/img/john-schnobrich-FlPc9_VocJ4-unsplash.jpg" alt="office" class="mw-100">
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
+        <div class="category__item__img w-100">
+          <img src="../../assets/img/annie-spratt-FSFfEQkd1sc-unsplash.jpg" alt="office" class="mw-100">
+          <p class="text-white font-weight-bold mb-0">Sales Jobs</p>
+        </div>
+        <div class="category__item__container">
+
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="col-12 col-md-3 category__item">
-        <img src="../../assets/img/annie-spratt-FSFfEQkd1sc-unsplash.jpg" alt="office" class="mw-100">
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
-        <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-          <li class="list-group-item">
-            <a href="#" class="text-dark">Financial Manager Jobs</a>
-          </li>
-        </ul>
+        <div class="category__item__img w-100">
+          <img src="../../assets/img/thought-catalog-505eectW54k-unsplash.jpg" alt="office" class="mw-100">
+          <p class="text-white font-weight-bold mb-0">Sales Jobs</p>
+        </div>
+        <div class="category__item__container" [class.active]="isActive">
+
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+          <a href="#" class="category__item__heading mt-4 mb-3 d-block">Accounting/Finance Jobs</a>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#" class="text-dark">Financial Manager Jobs</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -393,13 +419,13 @@
 
 <section class="myCard">
   <div class="container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-between align-items-center row">
-        <div class="myCard__body col-9">
+    <div class="row mx-0 justify-content-center">
+      <div class="col-12 myCard__cont d-flex justify-content-between align-items-center row">
+        <div class="myCard__body col-12 col-md-9">
           <h3 class="myCard__body__heading text-primary font-weight-light">Ready to get started?</h3>
           <p class="text-secondary myCard__body__text">Create free account and refer a friend</p>
         </div>
-        <div class="col-3 d-flex justify-content-center" >
+        <div class="col-12 col-md-3 d-flex justify-content-start justify-content-md-center">
           <button type="button" class="btn btn-primary myCard__button">Create Free Account</button>
         </div>
       </div>

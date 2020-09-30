@@ -1,5 +1,8 @@
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import { Event } from '@angular/router';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { debounceTime } from "rxjs/operators";
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +17,12 @@ import { Component, OnInit } from '@angular/core';
       state("collapseEnd", style({
         opacity: 1
       })),
-      transition(":enter, :leave", [
-        animate("0.5s")
+      transition(":enter", [
+        animate("300ms")
       ]),
+      transition(":leave", [
+        animate("300ms")
+      ])
     ]
     ),
     trigger("buttonsAnimation", [
@@ -26,8 +32,8 @@ import { Component, OnInit } from '@angular/core';
             opacity: 0,
             transform: "translateX(30px)"
           }),
-          stagger(50, [
-            animate("0.5s", style({
+          stagger(150, [
+            animate("300ms", style({
               opacity: 1,
               transform: "translateX(0px)"
             }))
@@ -42,7 +48,7 @@ import { Component, OnInit } from '@angular/core';
             transform: "translateX(0px)"
           }),
           stagger(50, [
-            animate("0.5s", style({
+            animate("300ms", style({
               opacity: 0,
               transform: "translateX(30px)"
             }))
@@ -50,21 +56,50 @@ import { Component, OnInit } from '@angular/core';
         ],
         ),
       ])
+    ]),
+    trigger("navbarDisplay", [
+      state("navUp", style({
+        transform: 'translateY(-70px)'
+      })),
+      state("navDown", style({
+        transform: "translateY(0px)"
+      })),
+
+      transition("navUp <=> navDown", [
+        animate("0.3s")
+      ])
     ])
   ]
 })
 export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false;
-  collapseTrans: boolean = false;
+  navbarState: string = "navDown";
+  @ViewChild("navbar", {static: true}) navbarElement: ElementRef;
+  lastScrollY: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
+    const scrollEvent = fromEvent(window, "scroll");
+    scrollEvent.pipe(
+      debounceTime(15)
+    ).subscribe(
+      e => {
+        const scrollY = window.scrollY;
+        if (scrollY >= this.lastScrollY && scrollY > this.navbarElement.nativeElement.clientHeight) {
+          this.navbarState = "navUp";
+        } else {
+          this.navbarState = "navDown";
+        }
+
+        this.lastScrollY = scrollY;
+      }
+    )
   }
 
-  toggleNavbar(): void {
-
-  } 
+  toggleNavbar(e: any) {
+    this.isCollapsed = e.target.className.includes("navbar-collapse") ? false : true;
+  }
 
 }

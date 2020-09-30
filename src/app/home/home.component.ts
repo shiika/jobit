@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import Swiper from "swiper/bundle";
 
@@ -7,15 +8,16 @@ import Swiper from "swiper/bundle";
   styleUrls: ['./home.component.scss', "../../assets/scss/media/_home.scss"]
 })
 export class HomeComponent implements OnInit {
+  isActive: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
     const mySwiper = new Swiper('.swiper-container', {
-      // autoplay: {
-      //   delay: 4000,
-      //   disableOnInteraction: false,
-      // },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
       // Optional parameters
       direction: 'horizontal',
       loop: true,
@@ -26,7 +28,7 @@ export class HomeComponent implements OnInit {
         type: "bullets"
       },
 
-      speed: 700
+      speed: 500
 
     });
 
@@ -37,8 +39,6 @@ export class HomeComponent implements OnInit {
       //   delay: 3000
       // }
     });
-
-    // mySwiper.init();
   }
 
 }

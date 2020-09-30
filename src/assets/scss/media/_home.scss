@@ -4,25 +4,66 @@
 
 // home component
 
-.home {
-  @include media-breakpoint-down(md) {
-    background: url("../../img/avi-richards-Z3ownETsdNQ-unsplash.jpg") no-repeat center center scroll;
-    background-size: cover;
-
+@include media-breakpoint-down(sm) {
+  .home {
     &__heading {
       margin-bottom: 0;
+
+      &__desc {
+        z-index: 100;
+      }
+
+      &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        .img-container {
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
     }
 
     h1,
     h3,
     p {
-      color: white;
+      color: #dedede;
     }
   }
 
-}
+  .category {
 
-@include media-breakpoint-down(sm) {
+    &__item {
+      margin: 1rem 0;
+
+      &__container {
+        overflow: hidden;
+        height: 0;
+        transition: height 0.4s;
+      }
+
+      .btn-outline-primary:not(:disabled):not(.disabled):active:focus, 
+      .btn-outline-primary:not(:disabled):not(.disabled):active,
+      .btn-outline-primary:not(:disabled):not(.disabled):hover {
+        background-color: white;
+        color: $primary;
+        border: 1px solid $primary;
+      }
+
+      .btn-outline-primary:not(:disabled):not(.disabled).active:hover {
+        background-color: $primary;
+        color: white;
+        border: 1px solid $primary;
+      }
+  
+      &__container.active {
+        height: 507px;
+      }
+    }
+  }
+
   .carousel {
     text-align: center;
 
@@ -73,7 +114,7 @@
     &__item {
 
       &__message {
-        
+
         p {
           font-size: 1rem;
         }

@@ -24,6 +24,7 @@
     "@nebular/theme": "^6.0.1",
     "bootstrap": "^4.5.0",
     "eva-icons": "^1.1.2",
+    "gsap": "^3.5.1",
     "rxjs": "~6.5.5",
     "swiper": "^6.1.1",
     "tslib": "^2.0.0",

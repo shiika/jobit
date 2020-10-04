@@ -12,6 +12,7 @@
 
       &__desc {
         z-index: 100;
+        padding-top: 7rem;
       }
 
       &__img {
@@ -67,14 +68,14 @@
       }
   
       &__container.active {
-        height: 507px;
+        height: 37.5rem;
       }
     }
   }
 
   .carousel {
     text-align: center;
-    padding-top: 0;
+    padding-top: 2rem;
 
     &__desc {
       padding-top: 0;

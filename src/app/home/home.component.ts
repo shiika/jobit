@@ -75,10 +75,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.headingState = "slideDown";
     const mySwiper = new Swiper('.swiper-container', {
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
+      // autoplay: {
+      //   delay: 4000,
+      //   disableOnInteraction: false,
+      // },
       // Optional parameters
       direction: 'horizontal',
       loop: true,

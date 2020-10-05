@@ -30,7 +30,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
             opacity: 0
           }),
           stagger(70, [
-            animate("0.4s 0.7s ease-in", style({
+            animate("0.4s 0.9s ease-in", style({
               transform: "translateX(0)",
               opacity: 1
             }))
@@ -44,7 +44,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
           style({
             transform: "translateY(-100%)"
           }),
-          animate("0.3s 0.7s ease-in", style({
+          animate("0.3s 0.9s ease-in", style({
             transform: "translateY(0)"
           }))
         ])
@@ -54,10 +54,10 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
       transition(":enter", [
         query(".home__heading__img .img-container", [
           style({
-            transform: "translateX(30%)",
+            transform: "translateY(30%)",
             opacity: 0
           }),
-          animate("0.6s 0.8s cubic-bezier(.75,-0.5,0,1.75)", style({
+          animate("0.8s 1.3s cubic-bezier(.75,-0.5,0,1.75)", style({
             transform: "translateX(0)",
             opacity: 1
           }))

@@ -29,8 +29,6 @@
 
         &:nth-child(2) {
           img {
-            position: relative;
-            top: -2rem;
             animation-delay: 6s;
             animation-name: imageAnimation-2;
           }
@@ -166,11 +164,6 @@
 
   &__profile {
     display: flex;
-    // position: absolute;
-    // top: 70%;
-    // left: 15%;
-
-
     &__img {
       border: 1px solid transparent;
       border-radius: 50%;
@@ -359,7 +352,7 @@
 
 @keyframes imageAnimation-3 {
   0% {
-    transform: translateY(-70px);
+    transform: translateY(40px);
     opacity: 0;
   }
 

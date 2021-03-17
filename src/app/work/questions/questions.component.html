@@ -1,0 +1,17 @@
+<div class="row">
+    <h4 class="col-12 py-2">
+        The hiring team at Cybertron International Inc. also requires that you answer the below questions.
+    </h4>
+
+    <div class="col-12"  *ngFor="let question of questions">
+        <mat-form-field appearance="outline">
+            <mat-label>{{question.question}}</mat-label>
+            <input matInput placeholder="Max Characters: 100">
+        </mat-form-field>
+    </div>
+
+    <div class="col-12 py-2 questions__submit mt-3 d-flex justify-content-center">
+        <button mat-raised-button color="accent" class="text-white">Submit Application</button>
+        <button mat-button color="warn" routerLink="../">Cancel</button>
+    </div>
+</div>

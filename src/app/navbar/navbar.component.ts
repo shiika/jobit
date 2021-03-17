@@ -1,6 +1,5 @@
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import { Event } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from "rxjs/operators";
 

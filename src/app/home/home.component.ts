@@ -57,7 +57,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
             transform: "translateY(30%)",
             opacity: 0
           }),
-          animate("0.8s 1.3s cubic-bezier(.75,-0.5,0,1.75)", style({
+          animate("1s 1.2s cubic-bezier(.75,-0.5,0,1.75)", style({
             transform: "translateX(0)",
             opacity: 1
           }))
@@ -67,7 +67,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
   ]
 })
 export class HomeComponent implements OnInit {
-  isActive: boolean = true;
+  isActive: boolean = false;
   headingState = "slideUp";
 
   constructor() { }
@@ -75,10 +75,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.headingState = "slideDown";
     const mySwiper = new Swiper('.swiper-container', {
-      // autoplay: {
-      //   delay: 4000,
-      //   disableOnInteraction: false,
-      // },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
       // Optional parameters
       direction: 'horizontal',
       loop: true,

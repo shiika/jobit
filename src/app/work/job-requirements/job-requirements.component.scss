@@ -1,0 +1,27 @@
+.job-requirem {
+
+  &__actions {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    mat-card-actions {
+      display: flex;
+
+      button[mat-raised-button] {
+        flex-grow: 2;
+      }
+    }
+  }
+
+
+
+  &__requirements {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  &__req {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}

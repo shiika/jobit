@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12 col-sm-2 col-md-4 job-requirem__req" *ngFor="let item of requirements">
+        <strong>Experience Needed:</strong><br>
+        <img src="https://img.icons8.com/cotton/64/000000/info--v5.png" width="15px"/>
+        1-3 Years
+    </div>
+
+    <div class="col-12 job-requirem__requirements">
+        <h5><img src="https://img.icons8.com/wired/64/000000/ingredients-list.png" class="mb-2" width="40px"/> Job Requirements</h5>
+        <ul class="pl-4">
+            <li>
+                1+ Years of experience in front-end/UI development using (HTML5/CSS3/ExpressJS/AngularJS).
+            </li>
+            <li>
+                Experience with GIT is a Must.
+            </li>
+            <li>
+                Excellent experience with HTML5/CSS3 frameworks.
+            </li>
+            <li>
+                Experience in Object Oriented Design and Code Refactoring.
+            </li>
+            <li>
+                Possess an advanced knowledge of web and mobile UX/UI; adhere to and extrapolate complex design systems and apply to coded pages, screens, and states.
+            </li>
+            <li>
+                Experience with JavaScript frameworks (React, Vue.js or Angular 7) is a Plus.
+            </li>
+            <li>
+                Self-motivated learner who is constantly seeking out new technologies.
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-12 job-requirem__keywords">
+        <h5><img src="https://img.icons8.com/windows/32/000000/todo-list.png" width="40px" class="mb-2"/> Keywords</h5>
+        <mat-chip-list aria-label="Fish selection" class="d-block mt-2">
+            <mat-chip [color]="i % 2 == 0 ? 'warn' : 'accent'" class="text-white" selected *ngFor="let skill of skills; let i = index">{{skill}}</mat-chip>
+        </mat-chip-list>
+    </div>
+
+    <div class="col-12 job-requirem__actions">
+        <mat-card-actions>
+            <button mat-raised-button [color]="'primary'" routerLink="questions">Apply for Job</button>
+            <button mat-stroked-button color="accent"> <mat-icon>bookmark</mat-icon> Save Job</button>
+        </mat-card-actions>
+    </div>
+</div>

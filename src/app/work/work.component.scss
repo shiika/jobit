@@ -1,0 +1,105 @@
+@import "../../assets/scss/variables";
+
+.work {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &__container {
+        &:not(.is-mobile) {
+    
+            mat-sidenav {
+                width: 70px;
+                transform: none;
+                visibility: visible !important;
+                box-shadow:  0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12) !important;
+        
+            }
+
+            mat-sidenav-content {
+                padding-left: 80px;
+                overflow: hidden;
+                
+                .container-md {
+                    max-width: 100%;
+                }
+            }
+        }
+        mat-nav-list {
+            overflow-x: hidden !important;
+        }
+
+        .mat-list-single-selected-option {
+            background: rgba(0, 0, 0, 0.15);
+
+            mat-icon {
+                color: $primary;
+            }
+        }
+
+        mat-icon {
+            outline: none;
+
+        }
+
+        mat-icon:not(.mat-primary) {
+            color: #8c9eff;
+        }
+    
+        mat-sidenav-content {
+            overflow: hidden;
+        }
+        
+
+    
+        &__toolbar{
+    
+            &__btn {
+                background: url("../../assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash\ \(1\).jpg") no-repeat center center scroll;
+                background-size: cover;
+            }
+    
+            &__app {
+                flex-grow: 1;
+            }
+        }
+
+        mat-tab-group {
+
+            .tab-container {
+                height: 75vh;
+            }
+        }
+
+        &.is-mobile {
+
+            mat-sidenav {
+                width: 200px;
+            }
+        }
+    }
+
+}
+
+:host ::ng-deep {
+    
+    .mat-tab-body-content {
+        background-color: rgba(0, 0, 0, 0.07);
+    }
+
+    .mat-tab-group-dynamic-height .mat-tab-body-content {
+        overflow: auto;
+    }
+
+    .mat-tab-body-content::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+
+  

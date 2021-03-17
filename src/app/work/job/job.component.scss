@@ -1,0 +1,51 @@
+@import "../../../assets/scss/variables";
+
+:host(.active) {
+    mat-card {
+        box-shadow: rgb(204, 224, 255) 0px 0px 0px 5px;
+        border: 1px solid #0351ff;
+        transform: scale(1.02);
+    }
+}
+
+:host {
+    outline: none;
+}
+
+mat-card {
+  margin: 10px;
+  outline: none;
+  border: 1px solid transparent;
+  transition: border 0.4s, box-shadow 0.4s;
+
+  &-header {
+    align-items: flex-start;
+
+    button[mat-icon-button] {
+      margin-left: auto;
+    }
+
+    mat-chip-list {
+
+      mat-chip {
+        font-size: 9px;
+      }
+    }
+
+    .mat-icon {
+        font-size: 28px;
+    }
+
+    .mat-card-title {
+      color: $primary;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    .mat-card-subtitle:first-child {
+        color: $primary;
+    }
+  }
+
+
+}

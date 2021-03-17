@@ -1,0 +1,16 @@
+<mat-card style="cursor: pointer;" [@cardHover]="cardState" (mouseenter)="onCardChange('in')" (mouseleave)="onCardChange('out')">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img [src]='job.image' [alt]="job.image + ' icon'" class="mw-100">
+      </div>
+      <mat-card-subtitle class="mb-1">{{job.companyName}}</mat-card-subtitle>
+      <mat-card-title>{{job.title}}</mat-card-title>
+      <mat-card-subtitle>
+          {{job.publishDate}}
+          <mat-chip-list aria-label="Fish selection" class="d-block mt-2">
+            <mat-chip [color]="i % 2 == 0 ? 'warn' : 'accent'" class="text-white" selected *ngFor="let skill of job.skills; let i = index">{{skill}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-subtitle>
+      <button mat-icon-button (click)="isSaved = !isSaved; $event.stopPropagation()"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button>
+    </mat-card-header>
+  </mat-card>

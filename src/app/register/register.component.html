@@ -1,0 +1,453 @@
+<section class="login">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <!-- <div class="col-4 login__img">
+      </div> -->
+      <div class="col login__content">
+        <button type="button" mat-button routerLink="/home" class="mx-auto py-4 text-center d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32">
+            <g id="Group_2415" data-name="Group 2415" transform="translate(3.429 3)">
+              <circle id="Ellipse_2" data-name="Ellipse 2" cx="16" cy="16" r="16" transform="translate(-3.429 -3)"
+                fill="#0351ff"></circle>
+              <path id="Path_1479" data-name="Path 1479"
+                d="M930.98-550.18a12.887,12.887,0,0,1,12.895,13.014A12.9,12.9,0,0,1,930.7-524.374a12.894,12.894,0,0,1-12.625-13.269A12.9,12.9,0,0,1,930.98-550.18Zm12.025,12.792A12.047,12.047,0,0,0,930.381-549.3a12.054,12.054,0,0,0-11.43,12.69,12.042,12.042,0,0,0,12.605,11.354A12.025,12.025,0,0,0,943.005-537.388Z"
+                transform="translate(-918.068 550.18)" fill="#0351ff" stroke="#fff" stroke-width="1"></path>
+              <path id="Path_1481" data-name="Path 1481"
+                d="M1200.886-436.28h2.932a.462.462,0,0,1,.443.729c-.445.863-.894,1.723-1.335,2.588a.472.472,0,0,0-.047.276q.708,4.054,1.426,8.107c.124.7.258,1.408.373,2.114a1.59,1.59,0,0,1-.37,1.306q-1.089,1.329-2.181,2.656a1.57,1.57,0,0,1-2.508,0c-.724-.873-1.437-1.756-2.163-2.628a1.842,1.842,0,0,1-.346-1.621c.433-2.384.847-4.772,1.267-7.159.164-.929.33-1.858.489-2.788a.417.417,0,0,0-.036-.243c-.444-.869-.879-1.744-1.349-2.6a.486.486,0,0,1,.456-.742C1198.92-436.266,1199.9-436.28,1200.886-436.28Zm-1.132,3.845c-.06.329-.118.643-.173.958q-.81,4.572-1.62,9.145a.639.639,0,0,0,.128.536q1.13,1.39,2.269,2.773a.661.661,0,0,0,1.038-.005c.746-.9,1.485-1.815,2.228-2.722a.721.721,0,0,0,.158-.609q-.3-1.681-.6-3.362-.483-2.723-.965-5.446c-.075-.421-.15-.842-.225-1.267Zm-1.126-2.925a.64.64,0,0,0,.029.085c.316.611.629,1.223.953,1.83a.235.235,0,0,0,.178.088c.721.006,1.443,0,2.164.006a.2.2,0,0,0,.214-.127c.294-.58.6-1.155.895-1.732.024-.046.042-.095.067-.151Z"
+                transform="translate(-1187.969 439.998)" fill="#0351ff" stroke="#fff" stroke-width="1"></path>
+            </g>
+          </svg>
+          <span class="login__content__app ml-2">Jobit</span>
+        </button>
+
+        <h3 class="text-center mb-3">Seeker Registration</h3>
+
+        <h4 class="text-center font-weight-normal">Step {{stepper.selectedIndex + 1}}/3</h4>
+        <h3 class="text-center">{{steps[stepper.selectedIndex] | titlecase}}</h3>
+
+        <mat-horizontal-stepper linear #stepper>
+          <mat-step [stepControl]="generalInfo" [editable]="false">
+            <form class="col-12 col-md-10 row login__infoForm" [formGroup]="generalInfo" (ngSubmit)="generalSubmit()">
+              <ng-template matStepLabel>General Info</ng-template>
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="first_name" required>
+                  <mat-error *ngIf="generalInfo.get('first_name').errors">First Name is invalid</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="last_name" required>
+                  <mat-error *ngIf="generalInfo.get('last_name').errors">Last Name is invalid</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="fill">
+                  <mat-label>Choose your birthdate</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="birth_date" (focus)="picker.open()">
+                  <mat-error *ngIf="generalInfo.get('birth_date').errors && generalInfo.get('birth_date').touched">Please enter your birthdate</mat-error>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="location" required>
+                  <mat-error *ngIf="generalInfo.get('location').errors">Please enter your current location</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label class="d-block font-weight-bold">Gender: </label>
+                <mat-radio-group color="primary"
+                formControlName="gender">
+                <mat-radio-button [value]="'male'">
+                  Male
+                </mat-radio-button>
+                <mat-radio-button class="ml-2" [value]="'female'">
+                  Female
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Military Status</mat-label>
+                <mat-select formControlName="military_status">
+                  <mat-option value="postponed">
+                    Postponed
+                  </mat-option>
+                  <mat-option value="exempted">
+                    Exempted
+                  </mat-option>
+                  <mat-option value="completed">
+                    Completed
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="generalInfo.get('military_status').errors && generalInfo.get('military_status').touched">Military status is required</mat-error>
+            </div>
+            <div class="col-12 col-md-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Marital Status</mat-label>
+                <mat-select formControlName="marital_status">
+                  <mat-option value="single">
+                    Single
+                  </mat-option>
+                  <mat-option value="married">
+                    Married
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="generalInfo.get('marital_status').errors && generalInfo.get('marital_status').touched">Marital status is required</mat-error>
+            </div>
+
+            <div class="col-12 col-md-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Phone number</mat-label>
+                <input matInput formControlName="phone">
+                <mat-error *ngIf="generalInfo.get('phone').errors">{{generalInfo.get('phone').errors["duplicated"] ? 'Phone is already existed' : "Phone is not valid"}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="lds-hourglass col-1" *ngIf="generalInfo.get('phone').pending"></div>
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="example@gmail.com" formControlName="email">
+                  <mat-error *ngIf="generalInfo.get('email').invalid">{{generalInfo.get("email").errors["duplicated"] ? "Email is already existed" : "Email is required"}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input type="password" matInput placeholder="Min 8 Characters" formControlName="password" password>
+                  <mat-error *ngIf="generalInfo.get('location').errors">{{ generalInfo.get('password').errors["required"] ? "Password is required" : "Password should be minimum of 8 characters" }}</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="mt-2" mat-raised-button color="primary" 
+                [disabled]="generalInfo.invalid"
+                >Save and Continue</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="careerInterests" [editable]="false">
+            <form class="col-12 row" [formGroup]="careerInterests" (ngSubmit)="interestsSubmit()">
+              <ng-template matStepLabel>Career Interests</ng-template>
+              <div class="col-12 col-md-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Salary</mat-label>
+                  <input matInput placeholder="Expected salary" formControlName="min_salary">
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-2">
+                <mat-checkbox class="example-margin"
+                            [checked]="false"
+                            [color]="'primary'"
+                            (change)="setConfidential($event)">
+                Confidential
+                </mat-checkbox>
+              </div>
+              <div class="col-12 col-md-7">
+                <mat-form-field appearance="fill">
+                  <mat-label>Job Status</mat-label>
+                  <mat-select formControlName="status">
+                    <mat-option value="ready to apply">
+                      I'm unemployed and desperete for a job
+                    </mat-option>
+                    <mat-option value="actively looking">
+                      I'm actively looking for new opportunities
+                    </mat-option>
+                    <mat-option value="looking for better">
+                      I'm happy where i am but dont mind better jobs
+                    </mat-option>
+                    <mat-option value="already working">
+                      I'm happy where i am but dont mind better jobs
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="careerInterests.get('status').errors && careerInterests.get('status').touched">Job status is required</mat-error>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Experience Years</mat-label>
+                  <mat-select formControlName="expYears">
+                    <mat-option [value]="1">
+                      1 Year
+                    </mat-option>
+                    <mat-option [value]="2">
+                      2 Years
+                    </mat-option>
+                    <mat-option [value]="3">
+                      3 Years
+                    </mat-option>
+                    <mat-option [value]="4">
+                      4 Years
+                    </mat-option>
+                    <mat-option [value]="5">
+                      5 Years
+                    </mat-option>
+                    <mat-option [value]="10">
+                      +5 Years
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="careerInterests.get('expYears').errors && careerInterests.get('expYears').touched">Job status is required</mat-error>
+              </div>
+
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Career Level</mat-label>
+                    <mat-chip-list #chipList formControlName="careerLevel">
+                      <mat-chip (click)="selectLevel($event)" #student>Student</mat-chip>
+                      <mat-chip (click)="selectLevel($event)">Experienced Non-Manager</mat-chip>
+                      <mat-chip (click)="selectLevel($event)">Entry Level</mat-chip>
+                      <mat-chip (click)="selectLevel($event)">Manager</mat-chip>
+                      <mat-chip (click)="selectLevel($event)">Senior Management</mat-chip>
+                    </mat-chip-list>
+                  </mat-form-field>
+              </div>
+              
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Education Level</mat-label>
+                    <mat-chip-list #eduList formControlName="educationLevel">
+                      <mat-chip (click)="selectDegree($event)" #bachelor>Bachelor's Degree</mat-chip>
+                      <mat-chip (click)="selectDegree($event)">Master's Degree</mat-chip>
+                      <mat-chip (click)="selectDegree($event)">Doctorate Degree</mat-chip>
+                      <mat-chip (click)="selectDegree($event)">High Schools's Degree</mat-chip>
+                      <mat-chip (click)="selectDegree($event)">Diploma</mat-chip>
+                    </mat-chip-list>
+                  </mat-form-field>
+              </div>
+
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Job Types</mat-label>
+                    <mat-chip-list #typesList formArrayName="jobTypes" [multiple]="true">
+                      <mat-chip *ngFor="let type of jobTypes; let i = index" (click)="selectType($event, i)" [selected]="type === 'Full Time'">{{ type }}</mat-chip>
+                    </mat-chip-list>
+                  </mat-form-field>
+              </div>
+
+              <div class="col-12">
+                <button mat-raised-button color="primary" type="submit" [disabled]="careerInterests.invalid">Save and Continue</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="profInfo">
+            <form class="col-12 row" [formGroup]="profInfo" (ngSubmit)="profSubmit()">
+              <ng-template matStepLabel>Professional Info</ng-template>
+              <div class="col-12" formArrayName="jobTitles">
+                <mat-form-field appearance="outline" [class.mat-form-field-invalid]="jobTitles.invalid && jobTitles.touched">
+                    <mat-label>Job Titles</mat-label>
+                    <mat-chip-list #titlesList aria-label="Fruit selection">
+                      <mat-chip *ngFor="let title of jobTitles.controls; let i = index" [selectable]="false" [removable]="true" (removed)="jobTitles.removeAt(i)">
+                          {{title.value}}
+                          <mat-icon matChipRemove>clear</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Add titles..."
+                            matInput
+                            [matChipInputFor]="titlesList"
+                            (blur)="jobTitles.markAsTouched()"
+                            [matChipInputSeparatorKeyCodes]="seperatorKeyCodes"
+                            (matChipInputTokenEnd)="addTitle($event)"
+                            [matChipInputAddOnBlur]="false">
+                    </mat-chip-list>
+                  </mat-form-field>
+                  <mat-error *ngIf="jobTitles.invalid && jobTitles.touched" >You must have minimum of 1 title</mat-error>
+              </div>
+
+                <div class="col-12 row">
+                  <div class="col-12 row">
+                    <mat-hint align="start" class="col-12">You should have two languages at least</mat-hint>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Language</mat-label>
+                        <mat-select #langName>
+                          <!-- <mat-option *ngFor="let lang of languages" [value]="lang" [disabled]="">
+                            {{ lang | titlecase}}
+                          </mat-option> -->
+                          <mat-option value="Arabic" [disabled]="!isDisabled('Arabic')">
+                            Arabic
+                          </mat-option>
+                          <mat-option value="English" [disabled]="!isDisabled('English')">
+                            English
+                          </mat-option>
+                          <mat-option value="French" [disabled]="!isDisabled('French')">
+                            French
+                          </mat-option>
+                          <mat-option value="Italian" [disabled]="!isDisabled('Italian')">
+                            Italian
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Proficiency</mat-label>
+                        <mat-select #langLevel>
+                          <mat-option value="Native">
+                            Native
+                          </mat-option>
+                          <mat-option value="Beginner">
+                            Beginner
+                          </mat-option>
+                          <mat-option value="Intermediate">
+                            Intermediate
+                          </mat-option>
+                          <mat-option value="Fluent">
+                            Fluent
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <button type="button" mat-raised-button color="accent" [disabled]="langName.value == null || langLevel.value == null" (click)="addLang(langName.value, langLevel.value)" matStepperNext>Add Lang</button>
+                    </div>
+                    <div class="col-12 my-3">
+                      <ul class="list-group" formArrayName="langs">
+                        <div>
+                          <li class="list-group-item list-group-item-primary d-flex align-items-center justify-content-between" *ngFor="let lang of langs.controls; let i = index" [formGroupName]="i">
+                              {{ (lang.get("name").value | titlecase) }}: {{ lang.get("proficiency").value | titlecase }}
+                              <mat-icon style="cursor: pointer;" (click)="removeLang(i, lang.value.name)">clear</mat-icon>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12" formArrayName="skills">
+                  <mat-form-field appearance="outline" [class.mat-form-field-invalid]="skills.invalid && skills.touched">
+                      <mat-label>Skills</mat-label>
+                      <mat-chip-list #skillsList>
+                        <mat-chip *ngFor="let skill of skills.controls; let i = index" [selectable]="false" [removable]="true" (removed)="skills.removeAt(i)">
+                            {{skill.value}}
+                            <mat-icon matChipRemove>clear</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add skills..."
+                              matInput
+                              [matChipInputFor]="skillsList"
+                              (blur)="skills.markAsTouched()"
+                              [matChipInputSeparatorKeyCodes]="seperatorKeyCodes"
+                              (matChipInputTokenEnd)="addSkill($event)"
+                              [matChipInputAddOnBlur]="false">
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <mat-error *ngIf="skills.invalid && skills.touched" >You must have minimum of 2 skills</mat-error>
+                </div>
+
+                <div class="col-12 row" formGroupName="qualification">
+                  <h4 class="my-2 col-12">Qualification</h4>
+                  <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>Degree Level</mat-label>
+                    <mat-select #degreeLevel formControlName="degreeLevel">
+                      <mat-option value="bachelor">
+                        Bachelor
+                      </mat-option>
+                      <mat-option value="master">
+                        Master
+                      </mat-option>
+                      <mat-option value="doctorate">
+                        Doctorate
+                      </mat-option>
+                      <mat-option value="diploma">
+                        Diploma
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>University/Institution</mat-label>
+                    <mat-select #instit formControlName="institution">
+                      <mat-option value="helwan university">
+                        University of Helwan
+                      </mat-option>
+                      <mat-option value="cairo university">
+                        University of Cairo
+                      </mat-option>
+                      <mat-option value="auc">
+                        American University in Cairo
+                      </mat-option>
+                      <mat-option value="ain shams university">
+                        Univerisy of Ain Shams
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>Field of Study</mat-label>
+                    <mat-select #study formControlName="fieldOfStudy">
+                      <mat-option value="engineering">
+                        Engineering
+                      </mat-option>
+                      <mat-option value="accounting">
+                        Accounting
+                      </mat-option>
+                      <mat-option value="medicine">
+                        Medicine
+                      </mat-option>
+                      <mat-option value="science">
+                        Science
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>Grade</mat-label>
+                    <mat-select #grade formControlName="gradGrade">
+                      <mat-option value="A">
+                        Excellent
+                      </mat-option>
+                      <mat-option value="B">
+                        Very Good
+                      </mat-option>
+                      <mat-option value="C">
+                        Good
+                      </mat-option>
+                      <mat-option value="D">
+                        Fair
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!-- <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="start" formControlName="startDate" (focus)="start.open()">
+                    <mat-error *ngIf="qualification.get('startDate').errors && qualification.get('startDate').touched">Please enter your start date</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                    <mat-datepicker #start></mat-datepicker>
+                  </mat-form-field> -->
+                  <!-- <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="end" formControlName="endDate" (focus)="end.open()">
+                    <mat-error *ngIf="qualification.get('endDate').errors && qualification.get('endDate').touched">Please enter your end date</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                    <mat-datepicker #end></mat-datepicker>
+                  </mat-form-field> -->
+                  <mat-form-field class="col-12 col-md-6" appearance="fill">
+                    <mat-label>Enter start and end date</mat-label>
+                    <mat-date-range-input [rangePicker]="range">
+                      <input matStartDate formControlName="startDate" placeholder="Start date">
+                      <mat-error *ngIf="qualification.get('startDate').errors && qualification.get('startDate').touched">Please enter your start date</mat-error>
+                      <input matEndDate formControlName="endDate" placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="range"></mat-datepicker-toggle>
+                    <mat-date-range-picker #range></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+
+              <div class="col-12">
+                <button type="submit" [disabled]="profInfo.invalid" mat-raised-button color="primary" matStepperNext>Save and Continue</button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-horizontal-stepper>
+
+      </div>
+    </div>
+  </div>
+</section>

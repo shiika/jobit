@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  serverURL: "https://jobit-server.herokuapp.com/",
+  serverURL: "https://jobit-server.herokuapp.com",
 
 };

@@ -1,0 +1,12 @@
+@mixin heading-underline {
+    &::after {
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 16px;
+        height: 4px;
+        width: 10%;
+        background-color: #4d6182;
+  
+    }
+}

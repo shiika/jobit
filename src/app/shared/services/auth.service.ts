@@ -1,34 +1,34 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API_URLS } from "../API_URLS";
+import { take } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
     constructor(private http: HttpClient) {}
 
-    registerUser(userInfo: {[key: string]: string}) {
-        return this.http.post(API_URLS.auth.register, userInfo, {
+    registerForm(formInfo: {[key: string]: string}, action: string) {
+        return this.http.post(API_URLS.seeker[action], formInfo, {
             headers: new HttpHeaders({
                 "Content-Type": "Application/json"
-            })
-        })
+            }),
+            responseType: "text"
+        }).pipe(
+            take(1)
+        )
     }
 
-    registerInterests(interests: {[key: string]: string}) {
-        return this.http.post(API_URLS.seeker.addInterests, interests, {
+    registerEmp(formInfo: {[key: string]: string}) {
+        return this.http.post(API_URLS.emp.register, formInfo, {
             headers: new HttpHeaders({
                 "Content-Type": "Application/json"
-            })
-        })
-    }
-
-    registerProf(profInfo: {[key: string]: string}) {
-        return this.http.post(API_URLS.seeker.addProf, profInfo, {
-            headers: new HttpHeaders({
-                "Content-Type": "Application/json"
-            })
-        })
+            }),
+            responseType: "text"
+        }).pipe(
+            take(1)
+        )
     }
 
     

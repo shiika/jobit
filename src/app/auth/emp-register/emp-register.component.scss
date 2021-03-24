@@ -1,12 +1,20 @@
-.login {
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.register {
     height: 100vh;
+
+    h3 {
+        color: $heading-color;
+        @include heading-underline;
+    }
 
     mat-form-field {
         width: 100%;
     }
 
     &__img {
-        background: url("../../assets/img/stil-N9uOrBICcjY-unsplash.jpg") no-repeat center center scroll;
+        background: url("../../../assets/img/stil-N9uOrBICcjY-unsplash.jpg") no-repeat center center scroll;
         background-size: cover;
     }
 
@@ -19,7 +27,7 @@
         }
     }
 
-    form {
+    &__infoForm {
         font-size: 14px;
         margin: 0 auto;
     }

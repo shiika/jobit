@@ -1,21 +1,24 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../shared/services/data.service';
-import { AuthService } from "../shared/services/auth.service";
-import { UniqueEmailValidator } from "../shared/validators/email.validator";
-import { UniquePhoneValidator } from "../shared/validators/phone.validator";
-import { numberValidator } from "../shared/validators/number.validator";
-import { salaryValidator } from "../shared/validators/salary.validator";
-import { ENTER, COMMA, T } from "@angular/cdk/keycodes";
+import { DataService } from '../../shared/services/data.service';
+import { AuthService } from "../../shared/services/auth.service";
+import { UniqueEmailValidator } from "../../shared/validators/email.validator";
+import { UniquePhoneValidator } from "../../shared/validators/phone.validator";
+import { numberValidator } from "../../shared/validators/number.validator";
+import { salaryValidator } from "../../shared/validators/salary.validator";
+import { ENTER, COMMA } from "@angular/cdk/keycodes";
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
+
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss', '../../assets/scss/media/_register.scss']
+  styleUrls: ['./register.component.scss', '../../../assets/scss/media/_register.scss']
 })
 export class RegisterComponent implements OnInit {
   @ViewChild("chipList", { static: true }) chipList: MatChipList;
@@ -33,65 +36,67 @@ export class RegisterComponent implements OnInit {
   expYears: string[] = Array.from({length: 10}, (value, index) => `${index + 1} Years`);
   seperatorKeyCodes: number[] = [ENTER, COMMA];
   generalInfo: FormGroup = this.fb.group({
-    first_name: ["islam", [Validators.required, Validators.minLength(3)]],
-    last_name: ["abdelkarim", [Validators.required, Validators.minLength(3)]],
-    birth_date: [new Date(1997, 6, 30), [Validators.required]],
-    gender: ["male", [Validators.required]],
-    location: ["Cairo", [Validators.required]],
-    marital_status: ["single", [Validators.required]],
-    military_status: ["exempted", [Validators.required]],
-    phone: ["011111111", 
+    first_name: ["", [Validators.required, Validators.minLength(3)]],
+    last_name: ["", [Validators.required, Validators.minLength(3)]],
+    birth_date: [null, [Validators.required]],
+    gender: ["", [Validators.required]],
+    location: ["", [Validators.required]],
+    marital_status: ["", [Validators.required]],
+    military_status: ["", [Validators.required]],
+    phone: ["", 
             [numberValidator, 
               Validators.minLength(11)], 
               new UniquePhoneValidator(this.dataService).validate.bind(this)
             ],
     email: [
-      "loka.eslam@hotmail.com", 
+      "", 
       [Validators.required, Validators.email], 
        new UniqueEmailValidator(this.dataService).validate.bind(this)
     ],
-    password: ["22222222", [Validators.required, Validators.minLength(8)]],
+    password: ["", [Validators.required, Validators.minLength(8)]],
   });
 
   careerInterests: FormGroup = this.fb.group({
-    min_salary: ["4000", salaryValidator.bind(this)],
+    min_salary: ["", salaryValidator.bind(this)],
     
-    status: ["ready to work", Validators.required],
-    careerLevel: ["Student", Validators.required],
+    status: ["", Validators.required],
+    careerLevel: ["", Validators.required],
 
     jobTypes: this.fb.array([
       this.fb.control("Full Time")
     ], [Validators.minLength(1), Validators.required]),
 
     expYears: [0, [Validators.min(0), Validators.max(15), Validators.required]],
-    educationLevel: ["Bachelor's Degree", Validators.required],
+    educationLevel: ["", Validators.required],
   });
 
   profInfo: FormGroup = this.fb.group({
     jobTitles: this.fb.array([
       this.fb.control("frontend"),
-      this.fb.control("backend")
     ], { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(5)] }),
     langs: this.fb.array([
       
     ], [Validators.minLength(2), Validators.required]),
     skills: this.fb.array([
-      this.fb.control("Teamwork"),
-      this.fb.control("HTML")
+      this.fb.control("Teamwork")
     ], [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
     qualification: this.fb.group({
-      degreeLevel: ["Bachelor's", Validators.required],
-      institution: ["University of Helwan", Validators.required],
-      fieldOfStudy: ["Engineering", Validators.required],
+      degreeLevel: ["", Validators.required],
+      institution: ["", Validators.required],
+      fieldOfStudy: ["", Validators.required],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      gradGrade: ["D", Validators.required],
+      gradGrade: ["", Validators.required],
     }, Validators.required)
   })
   isConfidential: boolean = false;
   isLocationValid: boolean = true;
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private dataService: DataService, 
+    private authService: AuthService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -210,43 +215,33 @@ export class RegisterComponent implements OnInit {
     return this.languages.some(item => item === lang);
   }
 
-  generalSubmit(): void {
-    this.authService.registerUser(this.generalInfo.value)
-      .subscribe(
-        (res: any) => {
+  submitForm(form: {[key: string]: string}, action: string): void {
+    this.authService.registerForm(form, action)
+    .subscribe(
+      async (res: string) => {
+        if (action === "addProf") {
+            const swalImport = await import('sweetalert');
+            const swal = swalImport.default;
+            swal({
+              title: "Now you can start your journey",
+              text: "You have successfully signed up",
+              icon: "success",
+              buttons: ["Return to homepage", "Find jobs"]
+            })
+            .then(value => {
+              if (value) {
+                this.router.navigate(["/work"]);
+              } else {
+                this.router.navigate(["/home"])
+              }
+            })
+          }
           this.stepper.next();
           console.log(res);
         },
-        (error:any) => {
+        (error: any) => {
           console.log(error)
         });
-    // this.stepper.next();
-        
-  }
-
-  interestsSubmit(): void {
-    this.authService.registerInterests(this.careerInterests.value)
-      .subscribe((res: any) => {
-        this.stepper.next();
-        console.log(res);
-      },
-      (error: any) => {
-        console.log(error)
-      })
-    // this.stepper.next();
-  }
-
-  profSubmit(): void {
-    this.authService.registerProf(this.profInfo.value)
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      )
-    // console.log(this.profInfo)
   }
 
 }

@@ -1,9 +1,9 @@
-<section class="login">
+<section class="register">
   <div class="container-fluid h-100">
     <div class="row h-100">
-      <!-- <div class="col-4 login__img">
+      <!-- <div class="col-4 register__img">
       </div> -->
-      <div class="col login__content">
+      <div class="col register__content">
         <button type="button" mat-button routerLink="/home" class="mx-auto py-4 text-center d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32">
             <g id="Group_2415" data-name="Group 2415" transform="translate(3.429 3)">
@@ -17,7 +17,7 @@
                 transform="translate(-1187.969 439.998)" fill="#0351ff" stroke="#fff" stroke-width="1"></path>
             </g>
           </svg>
-          <span class="login__content__app ml-2">Jobit</span>
+          <span class="register__content__app ml-2">Jobit</span>
         </button>
 
         <h3 class="text-center mb-3">Seeker Registration</h3>
@@ -27,7 +27,7 @@
 
         <mat-horizontal-stepper linear #stepper>
           <mat-step [stepControl]="generalInfo" [editable]="false">
-            <form class="col-12 col-md-10 row login__infoForm" [formGroup]="generalInfo" (ngSubmit)="generalSubmit()">
+            <form class="col-12 col-md-10 row register__infoForm" [formGroup]="generalInfo" (ngSubmit)="submitForm(generalInfo.value, 'register')">
               <ng-template matStepLabel>General Info</ng-template>
               <div class="col-12 col-md-6">
                 <mat-form-field appearance="outline">
@@ -137,7 +137,7 @@
             </form>
           </mat-step>
           <mat-step [stepControl]="careerInterests" [editable]="false">
-            <form class="col-12 row" [formGroup]="careerInterests" (ngSubmit)="interestsSubmit()">
+            <form class="col-12 row" [formGroup]="careerInterests" (ngSubmit)="submitForm(careerInterests.value, 'addInterests')">
               <ng-template matStepLabel>Career Interests</ng-template>
               <div class="col-12 col-md-3">
                 <mat-form-field appearance="outline">
@@ -242,7 +242,7 @@
             </form>
           </mat-step>
           <mat-step [stepControl]="profInfo">
-            <form class="col-12 row" [formGroup]="profInfo" (ngSubmit)="profSubmit()">
+            <form class="col-12 row" [formGroup]="profInfo" (ngSubmit)="submitForm(profInfo.value, 'addProf')">
               <ng-template matStepLabel>Professional Info</ng-template>
               <div class="col-12" formArrayName="jobTitles">
                 <mat-form-field appearance="outline" [class.mat-form-field-invalid]="jobTitles.invalid && jobTitles.touched">

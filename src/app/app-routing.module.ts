@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: "auth", loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+  },
+  {
+    path: "login", component: LoginComponent
   },
   {
     path: "", redirectTo: "home", pathMatch: "full"

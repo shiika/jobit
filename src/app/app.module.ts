@@ -8,9 +8,11 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { QuicklinkModule } from 'ngx-quicklink';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatDialogModule,
+    MatIconModule,
+    MatSlideToggleModule,
     QuicklinkModule
     
   ],

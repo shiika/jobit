@@ -1,7 +1,9 @@
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from "rxjs/operators";
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -76,7 +78,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild("navbar", {static: true}) navbarElement: ElementRef;
   lastScrollY: number = 0;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
@@ -95,6 +97,12 @@ export class NavbarComponent implements OnInit {
         this.lastScrollY = scrollY;
       }
     )
+  }
+
+  toggleLogin(event: Event): void {
+    this.dialog.open(LoginComponent, {
+      width: "900px"
+    })
   }
 
   toggleNavbar(e: any) {

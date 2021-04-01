@@ -1,0 +1,65 @@
+@import "../../assets/scss/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+@include media-breakpoint-down(md) {
+    .login {
+
+        &__content {
+            padding-bottom: 2rem;
+        }
+    }
+}
+
+.login {
+
+  &__content {
+
+    &__heading {
+      color: $heading-color
+    }
+
+    &__logo {
+        padding: 2rem 0 3rem;
+    }
+
+    &__app {
+      font-size: 2rem;
+      font-family: 'Saira Stencil One', cursive;
+    }
+
+    &__input {
+
+      .input-group-text {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: #ededed;
+        border-right: none;
+      }
+
+    }
+
+    .input-group>.form-control:not(:first-child) {
+      border-left: none;
+      background-color: #ededed;
+      border-radius: 0;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
+
+.mat-dialog-container {
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.mat-slide-toggle {
+
+  label {
+    justify-content: center;
+  }
+}

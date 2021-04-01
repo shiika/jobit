@@ -14,7 +14,6 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { MatCardModule } from "@angular/material/card";
 import { JobComponent } from './job/job.component';
 import { MatChipsModule } from "@angular/material/chips";
-import { MapComponent } from '../map/map.component';
 import { JobDescComponent } from './job-desc/job-desc.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +21,7 @@ import { MatInputModule } from "@angular/material/input";
 import { JobRequirementsComponent } from './job-requirements/job-requirements.component';
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, MapComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

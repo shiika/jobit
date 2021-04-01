@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSelectionListChange } from '@angular/material/list';
 import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UniqueEmailValidator } from 'src/app/shared/validators/email.validator';
 import { UniquePhoneValidator } from 'src/app/shared/validators/phone.validator';
@@ -48,6 +50,7 @@ export class EmpRegisterComponent implements OnInit {
     private fb: FormBuilder, 
     private dataService: DataService, 
     private authService: AuthService,
+    private dialog: MatDialog,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -72,21 +75,25 @@ export class EmpRegisterComponent implements OnInit {
     this.authService.registerEmp(this.empForm.value)
       .subscribe(
         async (res: string) => {
-          const swalImport = await import('sweetalert');
-            const swal = swalImport.default;
-            swal({
-              title: "Now you are hiring",
-              text: "You have successfully signed up",
-              icon: "success",
-              buttons: ["Return to homepage", "Find jobs"]
-            })
-            .then(value => {
-              if (value) {
-                this.router.navigate(["/work"]);
-              } else {
-                this.router.navigate(["/home"])
-              }
-            })
+          const swal = (await import("sweetalert2")).default;
+          swal.fire({
+            title: "Now you can start your journey",
+            text: "You have successfully signed up",
+            icon: "success",
+            confirmButtonText: "Start hiring",
+            denyButtonText: "Return to homepage",
+            showConfirmButton: true,
+            showDenyButton: true
+          })
+          .then(value => {
+            if (value.isConfirmed) {
+              this.dialog.open(LoginComponent, {
+                width: "900px"
+              })
+            } else if (value.isDenied) {
+              this.router.navigate(["/home"])
+            }
+          })
         }
       )
   }

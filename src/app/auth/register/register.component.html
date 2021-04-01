@@ -125,13 +125,13 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Password</mat-label>
                   <input type="password" matInput placeholder="Min 8 Characters" formControlName="password" password>
-                  <mat-error *ngIf="generalInfo.get('location').errors">{{ generalInfo.get('password').errors["required"] ? "Password is required" : "Password should be minimum of 8 characters" }}</mat-error>
+                  <mat-error *ngIf="generalInfo.get('password').errors">{{ generalInfo.get('password').errors["required"] ? "Password is required" : "Password should be minimum of 8 characters" }}</mat-error>
                 </mat-form-field>
               </div>
 
+              <!-- [disabled]="generalInfo.invalid" -->
               <div class="col-12">
                 <button type="submit" class="mt-2" mat-raised-button color="primary" 
-                [disabled]="generalInfo.invalid"
                 >Save and Continue</button>
               </div>
             </form>

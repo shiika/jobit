@@ -3,16 +3,12 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
 
-@include media-breakpoint-down(md) {
-    .login {
-
-        &__content {
-            padding-bottom: 2rem;
-        }
-    }
-}
-
 .login {
+
+  .container {
+    max-width: 100%;
+    padding-left: 0;
+  }
 
   &__content {
 
@@ -61,5 +57,18 @@
 
   label {
     justify-content: center;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .login {
+    
+    .container {
+      padding-left: 15px;
+    }
+
+      &__content {
+          padding-bottom: 2rem;
+      }
   }
 }

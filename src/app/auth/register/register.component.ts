@@ -12,8 +12,8 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
-
-import swal from 'sweetalert';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -96,6 +96,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder, 
     private dataService: DataService, 
     private authService: AuthService,
+    private dialog: MatDialog,
     private router: Router) {
   }
 
@@ -215,23 +216,28 @@ export class RegisterComponent implements OnInit {
     return this.languages.some(item => item === lang);
   }
 
-  submitForm(form: {[key: string]: string}, action: string): void {
+  async submitForm(form: {[key: string]: string}, action: string): Promise<void> {
     this.authService.registerForm(form, action)
     .subscribe(
       async (res: string) => {
         if (action === "addProf") {
-            const swalImport = await import('sweetalert');
-            const swal = swalImport.default;
-            swal({
+            const swal = (await import("sweetalert2")).default;
+            swal.fire({
               title: "Now you can start your journey",
               text: "You have successfully signed up",
               icon: "success",
-              buttons: ["Return to homepage", "Find jobs"]
+              confirmButtonText: "Find jobs",
+              denyButtonText: "Return to homepage",
+              showConfirmButton: true,
+              showDenyButton: true
+              // buttons: ["Return to homepage", "Find jobs"]
             })
             .then(value => {
-              if (value) {
-                this.router.navigate(["/work"]);
-              } else {
+              if (value.isConfirmed) {
+                this.dialog.open(LoginComponent, {
+                  width: "900px"
+                })
+              } else if (value.isDenied) {
                 this.router.navigate(["/home"])
               }
             })
@@ -240,7 +246,7 @@ export class RegisterComponent implements OnInit {
           console.log(res);
         },
         (error: any) => {
-          console.log(error)
+          console.log(error);
         });
   }
 

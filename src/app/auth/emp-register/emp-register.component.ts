@@ -74,7 +74,7 @@ export class EmpRegisterComponent implements OnInit {
   empSubmit(): void {
     this.authService.registerEmp(this.empForm.value)
       .subscribe(
-        async (res: string) => {
+        async _ => {
           const swal = (await import("sweetalert2")).default;
           swal.fire({
             title: "Now you can start your journey",

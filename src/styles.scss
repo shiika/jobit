@@ -5,9 +5,6 @@
 @import "./assets/scss/variables";
 @import "~@angular/material/theming"; // Theming Module import
 
-// Leaflet stylesheet
-@import "~leaflet/dist/leaflet.css";
-
 $theme-colors: (
     "primary": #0351ff,
     "success": #2dce92

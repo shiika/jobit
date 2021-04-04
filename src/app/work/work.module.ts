@@ -19,9 +19,10 @@ import { QuestionsComponent } from './questions/questions.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input"; 
 import { JobRequirementsComponent } from './job-requirements/job-requirements.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

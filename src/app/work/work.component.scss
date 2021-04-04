@@ -29,17 +29,6 @@
                 }
             }
         }
-        mat-nav-list {
-            overflow-x: hidden !important;
-        }
-
-        .mat-list-single-selected-option {
-            background: rgba(0, 0, 0, 0.15);
-
-            mat-icon {
-                color: $primary;
-            }
-        }
 
         mat-icon {
             outline: none;

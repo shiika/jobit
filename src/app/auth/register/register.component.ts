@@ -106,17 +106,6 @@ export class RegisterComponent implements OnInit {
     console.log(this.generalInfo)
   }
 
-  setConfidential(event: MatCheckboxChange): void {
-    this.isConfidential = !this.isConfidential;
-    if (event.checked) {
-      this.careerInterests.get("min_salary").disable();
-      this.careerInterests.get("min_salary").setValue("Confidential");
-    } else {
-      this.careerInterests.get("min_salary").enable();
-      this.careerInterests.get("min_salary").setValue("");
-    }
-  }
-
   addTitle(e: MatChipInputEvent): void {
     const value: string = e.value.trim().toLowerCase();
     const control: FormControl = new FormControl(value, Validators.minLength(3));
@@ -136,7 +125,6 @@ export class RegisterComponent implements OnInit {
       this.skills.push(control);
       e.input.value = "";
     }
-    console.log(this.careerInterests);
   }
 
   get jobTitles(): FormArray {

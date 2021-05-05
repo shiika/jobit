@@ -57,13 +57,6 @@
             }
         }
 
-        mat-tab-group {
-
-            .tab-container {
-                height: 75vh;
-            }
-        }
-
         &.is-mobile {
 
             mat-sidenav {
@@ -72,21 +65,6 @@
         }
     }
 
-}
-
-:host ::ng-deep {
-    
-    .mat-tab-body-content {
-        background-color: rgba(0, 0, 0, 0.07);
-    }
-
-    .mat-tab-group-dynamic-height .mat-tab-body-content {
-        overflow: auto;
-    }
-
-    .mat-tab-body-content::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 

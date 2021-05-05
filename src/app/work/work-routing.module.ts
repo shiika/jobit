@@ -10,17 +10,6 @@ const routes: Routes = [
 
   {
     path: "", component: WorkComponent, children: [
-      // {
-      //   path: "explore/:id", component: JobDescComponent, children: [
-      //     {
-      //       path: "", component: JobRequirementsComponent
-      //     },
-      //     {
-      //       path: "questions", component: QuestionsComponent
-      //     }
-
-      //   ]
-      // },
       {
         path: "explore", component: JobsComponent, children: [
           {

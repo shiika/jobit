@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+// Employees Component
+
+@include media-breakpoint-down(md) {
+    
+    :host {
+        width: calc(100% / 4);
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    
+    :host {
+        width: calc(100% / 2);
+    }
+}

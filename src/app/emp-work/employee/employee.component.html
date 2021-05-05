@@ -1,0 +1,18 @@
+<div class="employee">
+    <div class="employee__header">
+        <img src="../../../assets/img/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="Employee Image" class="employee__header__img">
+        <button mat-icon-button (click)="isSaved = !isSaved; $event.stopPropagation()"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button>
+    </div>
+
+    <div class="employee__name">
+        <h4>Edward S.Juarez</h4>
+        <h4>$4k/M</h4>
+    </div>
+
+    <h2 class="employee__title">Graphic Designer</h2>
+
+    <mat-chip-list aria-label="Fish selection" class="w-100">
+        <mat-chip>One fish</mat-chip>
+        <mat-chip>Two fish</mat-chip>
+      </mat-chip-list>
+</div>

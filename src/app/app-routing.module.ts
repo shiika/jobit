@@ -13,6 +13,9 @@ const routes: Routes = [
     path: "work", loadChildren: () => import("./work/work.module").then(m => m.WorkModule)
   },
   {
+    path: "find", loadChildren: () => import("./emp-work/emp-work.module").then(m => m.EmpWorkModule)
+  },
+  {
     path: "auth", loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
   },
   {

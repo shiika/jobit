@@ -12,7 +12,8 @@ export const API_URLS: {[key: string]: {[key: string]: string}} = {
 
     emp: {
         login: server + "/auth/login",
-        register: server + "/auth/emp-register"
+        register: server + "/auth/emp-register",
+        postJob: server + "/employer/post"
     },
 
     validators: {

@@ -1,0 +1,31 @@
+@import "../../../assets/scss/variables";
+
+:host {
+    width: 100%;
+    height: 100vh;
+}
+
+:host ::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: $primary;
+    }
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 300px;
+}
+
+.job-post {
+
+    &__desc, &__salary, &__vacancies {
+
+        h2, h5 {
+            color: $text-primary
+        }
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+

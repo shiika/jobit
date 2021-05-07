@@ -3,7 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import * as moment from 'moment';
-import { Job } from '../shared/models/job.model';
+import { Job } from '../core/models/job.model';
 
 @Component({
   selector: 'app-emp-work',

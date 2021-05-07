@@ -5,7 +5,6 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { JobPost } from 'src/app/shared/models/job.model';
 import { EmpService } from 'src/app/shared/services/emp.service';
 
 @Component({

@@ -1,8 +1,6 @@
-import * as moment from "moment/moment";
-
 import { style, trigger, state, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { Job } from 'src/app/shared/models/job.model';
+import { Job } from 'src/app/core/models/job.model';
 
 @Component({
   selector: 'app-job',
@@ -31,7 +29,6 @@ export class JobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(moment().format())
   }
 
   onCardChange(state: string) {

@@ -4,13 +4,16 @@ import { API_URLS } from "../API_URLS";
 import { catchError, take, tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { User } from "src/app/login/login.component";
-import { handleError } from "./utils/handleError.util";
-import { saveToken } from "./utils/savetoken.util";
+import { handleError } from "../../core/utils/handleError.util";
+import { saveToken } from "../../core/utils/savetoken.util";
 
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
+    isLoggedIn: boolean = false;
+    redirectUrl: string;
+    userType: string;
     constructor(private http: HttpClient) {}
 
     registerForm(formInfo: {[key: string]: string}, action: string) {
@@ -44,7 +47,11 @@ export class AuthService {
         }).pipe(
             take(1),
             catchError(handleError),
-            tap(saveToken)
+            tap((token: string) => {
+                saveToken(token);
+                this.isLoggedIn = true;
+                this.redirectUrl = userType === "job_seeker" ? "/work/explore" : "/find/emps" 
+            })
         )
     }
 

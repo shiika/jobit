@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from "moment";
-import { Job } from 'src/app/shared/models/job.model';
+import { Job } from 'src/app/core/models/job.model';
 
 
 @Component({

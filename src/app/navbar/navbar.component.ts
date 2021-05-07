@@ -78,7 +78,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild("navbar", {static: true}) navbarElement: ElementRef;
   lastScrollY: number = 0;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
@@ -100,8 +100,12 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleLogin(event: Event): void {
-    this.dialog.open(LoginComponent, {
+    const dialogRef = this.dialog.open(LoginComponent, {
       width: "900px"
+    });
+
+    dialogRef.afterClosed().subscribe(_ => {
+      console.log("Login has been closed!");
     })
   }
 

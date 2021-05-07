@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { EmployerGuard } from "./core/guards/employer.guard";
 
 const routes: Routes = [
   {
@@ -13,14 +14,14 @@ const routes: Routes = [
     path: "work", loadChildren: () => import("./work/work.module").then(m => m.WorkModule)
   },
   {
-    path: "find", loadChildren: () => import("./emp-work/emp-work.module").then(m => m.EmpWorkModule)
+    path: "find", loadChildren: () => import("./emp-work/emp-work.module").then(m => m.EmpWorkModule), canLoad: [EmployerGuard]
   },
   {
     path: "auth", loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
   },
-  {
-    path: "login", component: LoginComponent
-  },
+  // {
+  //   path: "login", component: LoginComponent
+  // },
   {
     path: "", redirectTo: "home", pathMatch: "full"
   }

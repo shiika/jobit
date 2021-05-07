@@ -1,6 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import Swiper from "swiper/bundle";
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
+import { MatDialogRef } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -66,7 +68,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
     ])
   ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit  {
   isActive: boolean = false;
   headingState = "slideUp";
 

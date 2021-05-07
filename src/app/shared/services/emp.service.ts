@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { take, catchError } from 'rxjs/operators';
 import { API_URLS } from '../API_URLS';
-import { JobPost } from '../models/job.model';
-import { handleError } from './utils/handleError.util';
+import { JobPost } from '../../core/models/job.model';
+import { handleError } from '../../core/utils/handleError.util';
 
 @Injectable()
 export class EmpService {

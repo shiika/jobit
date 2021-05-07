@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 
 export class User {
@@ -19,12 +20,14 @@ export class LoginComponent implements OnInit {
   @ViewChild("loginForm", {static: true}) loginForm: NgForm;
   error: string = "";
   userType: 'seeker' | 'employer' = "seeker";
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    public dialogRef: MatDialogRef<LoginComponent>) { }
 
   model = new User("", "");
 
   ngOnInit(): void {
-    console.log(this.loginForm);
     this.loginForm.valueChanges
       .subscribe(
         value => {
@@ -37,7 +40,9 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.model, this.userType === "seeker" ? "job_seeker" : "employer")
       .subscribe(
         (token: string) => {
-          console.log(token);
+          this.authService.userType = this.userType;
+          this.dialogRef.close("pizza");
+          this.router.navigate([this.authService.redirectUrl])
         },
         (error: string) => {
           this.error = error;

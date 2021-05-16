@@ -6,10 +6,10 @@ import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { UniqueEmailValidator } from 'src/app/shared/validators/email.validator';
-import { UniquePhoneValidator } from 'src/app/shared/validators/phone.validator';
+import { UniqueEmailValidator } from 'src/app/core/validators/email.validator';
+import { UniquePhoneValidator } from 'src/app/core/validators/phone.validator';
 import { DataService } from '../../shared/services/data.service';
-import { numberValidator } from '../../shared/validators/number.validator';
+import { numberValidator } from '../../core/validators/number.validator';
 
 @Component({
   selector: 'app-emp-register',

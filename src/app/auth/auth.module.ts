@@ -5,7 +5,8 @@ import { EmpRegisterComponent } from './emp-register/emp-register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { MaterialModule } from '../shared/material/material.module';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxDropzoneModule,
+    MatProgressBarModule
   ]
 })
 export class AuthModule { }

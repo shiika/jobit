@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { DataService } from "../services/data.service";
+import { DataService } from "../../shared/services/data.service";
 
 @Injectable({ providedIn: "root" })
 

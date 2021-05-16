@@ -22,7 +22,7 @@
 
             mat-sidenav-content {
                 padding-left: 80px;
-                overflow: hidden;
+                // overflow: hidden;
                 
                 .container-md {
                     max-width: 100%;
@@ -38,10 +38,6 @@
         mat-icon:not(.mat-primary) {
             color: #8c9eff;
         }
-    
-        mat-sidenav-content {
-            overflow: hidden;
-        }
         
 
     
@@ -54,6 +50,9 @@
     
             &__app {
                 flex-grow: 1;
+                font-family: 'Saira Stencil One', cursive;
+                font-size: 1.85rem;
+                text-transform: uppercase;
             }
         }
 

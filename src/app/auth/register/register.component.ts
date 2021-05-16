@@ -1,11 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../../shared/services/data.service';
 import { AuthService } from "../../shared/services/auth.service";
-import { UniqueEmailValidator } from "../../shared/validators/email.validator";
-import { UniquePhoneValidator } from "../../shared/validators/phone.validator";
-import { numberValidator } from "../../shared/validators/number.validator";
-import { salaryValidator } from "../../shared/validators/salary.validator";
+import { UniqueEmailValidator } from "../../core/validators/email.validator";
+import { UniquePhoneValidator } from "../../core/validators/phone.validator";
+import { numberValidator } from "../../core/validators/number.validator";
+import { salaryValidator } from "../../core/validators/salary.validator";
 import { ENTER, COMMA } from "@angular/cdk/keycodes";
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -14,13 +14,17 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize, take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss', '../../../assets/scss/media/_register.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   @ViewChild("chipList", { static: true }) chipList: MatChipList;
   @ViewChild("typesList", { static: true }) typesList: MatChipList;
   @ViewChild("skillsList", { static: true }) skillsList: MatChipList;
@@ -30,6 +34,10 @@ export class RegisterComponent implements OnInit {
   @ViewChild("bachelor", { static: true }) bachelor: ElementRef;
   @ViewChild("langName", { static: true }) langName: MatSelect;
   @ViewChild("langLevel", { static: true }) langLevel: MatSelect;
+  seekerImg: File;
+  filePath: string = "images/profile";
+  uploadPercent: Observable<number>;
+  $taskSub: Subscription;
   jobTypes: string[] = ["Full Time", "Part Time", "Internship", "Work From Home", "Freelance"];
   languages: string[] = ["Arabic", "English", "French", "Italian"];
   steps: string[] = ["General Info", "Career Interests", "Professional Info"];
@@ -43,6 +51,7 @@ export class RegisterComponent implements OnInit {
     location: ["", [Validators.required]],
     marital_status: ["", [Validators.required]],
     military_status: ["", [Validators.required]],
+    image_url: [""],
     phone: ["", 
             [numberValidator, 
               Validators.minLength(11)], 
@@ -91,19 +100,21 @@ export class RegisterComponent implements OnInit {
   })
   isConfidential: boolean = false;
   isLocationValid: boolean = true;
+  downloadUrl: string;
 
   constructor(
     private fb: FormBuilder, 
     private dataService: DataService, 
     private authService: AuthService,
     private dialog: MatDialog,
-    private router: Router) {
+    private router: Router,
+    private storage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
     this.student.nativeElement.click();
     this.bachelor.nativeElement.click();
-    console.log(this.generalInfo)
+    console.log(this.generalInfo);
   }
 
   addTitle(e: MatChipInputEvent): void {
@@ -197,11 +208,31 @@ export class RegisterComponent implements OnInit {
   removeLang(index: number, value: string): void {
     this.langs.removeAt(index);
     this.languages.push(value);
-    console.log(this.languages)
   }
 
   isDisabled(lang: string): boolean {
     return this.languages.some(item => item === lang);
+  }
+
+  // Drag and drop profile photo
+  onSelect(event: any) {
+    this.seekerImg = event.addedFiles[0];
+    const filePath = `images/${this.seekerImg.name}-${this.generalInfo.get("phone").value}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.seekerImg);
+
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+
+    // get notified when the download URL is available
+    this.$taskSub = task.snapshotChanges().pipe(
+        finalize(() => {fileRef.getDownloadURL().pipe(take(1)).subscribe(link => {this.generalInfo.get("image_url").setValue(link); console.log(link)})})
+     )
+    .subscribe()
+  }
+
+  onRemove() {
+    this.seekerImg = null;
   }
 
   async submitForm(form: {[key: string]: string}, action: string): Promise<void> {
@@ -236,6 +267,10 @@ export class RegisterComponent implements OnInit {
         (error: any) => {
           console.log(error);
         });
+  }
+
+  ngOnDestroy(): void {
+    // this.$taskSub.unsubscribe();
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-work',
@@ -85,7 +86,7 @@ export class WorkComponent implements OnInit {
     },
   ];
 
-  constructor(private mediaMatcher: MediaMatcher) {}
+  constructor(private mediaMatcher: MediaMatcher, private auth: AuthService) {}
 
   ngOnInit(): void {
     let viewport = this.mediaMatcher.matchMedia("(max-width: 767.98px)");
@@ -99,6 +100,10 @@ export class WorkComponent implements OnInit {
     if (!isMobile) {
       this.isToggled = !this.isToggled;
     }
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
 }

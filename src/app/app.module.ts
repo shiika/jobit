@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule, BUCKET } from "@angular/fire/storage";
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,11 +34,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDialogModule,
     MatIconModule,
     MatSlideToggleModule,
-    QuicklinkModule
+    QuicklinkModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
     
   ],
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    { provide: BUCKET, useValue: 'gs://jobit-b28d5.appspot.com' }
   ],
   bootstrap: [AppComponent]
 })

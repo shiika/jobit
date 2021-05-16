@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit {
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
     const scrollEvent = fromEvent(window, "scroll");
     scrollEvent.pipe(
-      debounceTime(15)
+      debounceTime(17)
     ).subscribe(
       e => {
         const scrollY = window.scrollY;

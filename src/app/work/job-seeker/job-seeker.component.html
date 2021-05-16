@@ -1,0 +1,114 @@
+<section class="seeker">
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-6 seeker__card">
+            <div class="col-12 seeker__card__header">
+                <img [src]="seeker.image_url" alt="Seeker photo" width="80">
+                <div class="seeker__card__info text-capitalize">
+                    <h3> {{ seeker.first_name }} {{ seeker.last_name }} </h3>
+                    <h4> {{seeker.role_name}} </h4>
+                </div>
+                <button mat-icon-button><mat-icon color="primary">edit</mat-icon></button>
+            </div>
+
+            <hr>
+            
+            <div class="seeker__card__bio col-12">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <h3 class="pt-2">Bio</h3>
+                    
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod diam turpis, eu porta eros pellentesque ac. Curabitur mauris risus, rutrum eget augue ac, suscipit lobortis dui. Nunc gravida magna vel lorem lacinia facilisis. Nullam pellentesque at nisl et malesuada. Duis felis sem, rhoncus vitae elit vel, egestas laoreet velit.</p>
+            </div>
+
+            <hr>
+
+            <div class="seeker__card__contact col-12">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <h3 class="pt-2">Contact</h3>
+                    
+                </div>
+                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="color: #2b307b"><strong>Email: </strong>{{seeker.email}}</li>
+                    <li class="list-group-item" style="color: #2b307b"><strong>Phone: </strong>{{seeker.phone_num}}</li>
+                    <li class="list-group-item" style="color: #2b307b"><strong>Location: </strong>{{seeker.location}}</li>
+                  </ul>
+            </div>
+
+            <hr>
+
+            <div class="seeker__card__skills col-12">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <h3 class="pt-2">Skills</h3>
+                    
+                </div>
+                
+                <div class="seeker__card__skills__btns d-flex flex-wrap mt-2">
+                    <button *ngFor="let skill of seeker.skills" class="btn btn-outline-primary" type="button" style="cursor: default">{{skill}}</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="seeker__card__langs col-12">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <h3 class="pt-2">Languages</h3>
+                    
+                </div>
+                
+                <ul class="list-group list-group-flush flex-row">
+                    <li *ngFor="let lang of seeker.langs" class="list-group-item" style="color: #2b307b"><strong>{{lang.name}}: </strong>{{lang.level}}</li>
+                  </ul>
+            </div>
+
+            <hr>
+        </div>
+        <div class="col-12 col-lg-4 col-md-6 seeker__exp">
+            <div class="header d-flex align-items-center col-12">
+                <mat-icon>work</mat-icon>
+                <h3 class="seeker__exp__title ml-2" style="margin-bottom: 0.2rem;"> Experience</h3>                
+            </div>
+
+            <hr>
+
+            <div class="col-12 seeker__exp__item" *ngFor="let experience of $experiences | async">
+                <div class="seeker__exp__item__header d-flex justify-content-between align-items-center">
+                    <h4 class="seeker__exp__item__date mb-0">{{experience.startDate | date: "mediumDate"}}- {{experience.endDate | date: "mediumDate"}}</h4>
+                    <button mat-icon-button (click)="removeExp(experience.ID)"><mat-icon color="primary">delete</mat-icon></button>
+                </div>
+                <h3 class="seeker__exp__item__company" style="padding-bottom: 0.1rem;">{{experience.companyName}}</h3>
+                <button class="btn btn-link pl-0 pt-0" type="button">{{experience.title}}</button>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="color: #2b307b"><strong>Salary: </strong>{{experience.salary}}</li>
+                    <li class="list-group-item" style="color: #2b307b"><strong>Job Type: </strong>{{experience.jobType}}</li>
+                  </ul>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-outline-primary d-flex justify-content-center align-items-center w-100 seeker__exp__item__add" (click)="toggleExp()"><mat-icon color="primary">add</mat-icon></button>
+        </div>
+        <div class="col-12 col-lg-4 col-md-6 seeker__edu">
+            <div class="header d-flex align-items-center col-12">
+                <mat-icon>work</mat-icon>
+                <h3 class="seeker__edu__title ml-2" style="margin-bottom: 0.2rem;"> Education</h3>                
+            </div>
+
+            <hr>
+
+            <div class="col-12 seeker__edu__item" *ngFor="let edu of $education | async">
+                <h4 class="seeker__edu__item__date">{{edu.startDate | date: "mediumDate"}}- {{edu.endDate | date: "mediumDate"}}</h4>
+                <h3 class="seeker__edu__item__company" style="padding-bottom: 0.1rem;">{{edu.degreeLevel}}</h3>
+                <button class="btn btn-link pl-0 pt-0" type="button">{{edu.institution}}</button>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="color: #2b307b"><strong>Industry: </strong>{{edu.fieldOfStudy}}</li>
+                    <li class="list-group-item" style="color: #2b307b"><strong>Graduation Grade: </strong>{{edu.grade}}</li>
+                  </ul>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-outline-primary d-flex justify-content-center align-items-center w-100 seeker__exp__item__add" (click)="toggleExp()"><mat-icon color="primary">add</mat-icon></button>
+        </div>
+    </div>
+</section>

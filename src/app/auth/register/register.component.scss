@@ -5,6 +5,12 @@
         width: 100%;
     }
 
+    mat-icon.upload-icon {
+      font-size: 70px;
+      width: 70px;
+      height: 70px;
+    }
+
     &__img {
         background: url("../../../assets/img/stil-N9uOrBICcjY-unsplash.jpg") no-repeat center center scroll;
         background-size: cover;

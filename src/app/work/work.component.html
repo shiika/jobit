@@ -3,7 +3,7 @@
     <button mat-icon-button [@menuToggle]="isToggled ? 'open' : 'close'" (click)="isToggled = !isToggled" *ngIf="isMobile">
       <mat-icon>{{isToggled ? 'close' : 'menu'}}</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button routerLink="/work/explore">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <g id="Group_2415" data-name="Group 2415" transform="translate(3.429 3)">
           <circle id="Ellipse_2" data-name="Ellipse 2" cx="16" cy="16" r="16" transform="translate(-3.429 -3)"
@@ -17,10 +17,20 @@
         </g>
       </svg>
     </button>
-    <span class="work__container__toolbar__app ml-2">Jobit</span>
-    <button mat-icon-button class="work__container__toolbar__btn" aria-label="Example icon-button with heart icon">
+    <span class="work__container__toolbar__app ml-2" style="cursor: pointer;" routerLink="/">Jobit</span>
+    <button mat-icon-button class="work__container__toolbar__btn" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
       <div class="work__container__toolbar__profile"></div>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/work/me">
+        <mat-icon>person</mat-icon>
+        <span>View Profile</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="work__container" [class.is-mobile]="isMobile">
     <mat-sidenav mode="over" #sidenav [(opened)]="isToggled" [@sidenavToggle]="isToggled ? 'open' : 'close'" (closedStart)="isToggled = false"

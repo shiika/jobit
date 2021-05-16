@@ -1,0 +1,79 @@
+<section class="login">
+    <div class="container">
+  
+      <div class="row">
+        <div class="login__img col-4 d-none d-md-block">
+          <img src="../../assets/img/linkedin-sales-navigator-EI50ZDA-l8Y-unsplash.jpg" alt="Working girl" class="mw-100">
+        </div>
+  
+        <div class="login__content col-12 col-md-8 d-flex align-items-center">
+  
+          <form [formGroup]="exp" (ngSubmit)="submitLogin()" class="row">
+
+            <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Company Name</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="companyName" required>
+                  <mat-error *ngIf="exp.get('companyName').errors">Company name is required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Salary</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="salary" required>
+                  <mat-error *ngIf="exp.get('salary').errors">Salary is required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Job Title</mat-label>
+                  <input matInput placeholder="Min: 6 Characters" formControlName="title" required>
+                  <mat-error *ngIf="exp.get('title').errors">Job title is required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Job Type</mat-label>
+                  <mat-select formControlName="jobType">
+                    <mat-option value="full-time">
+                      Full Time
+                    </mat-option>
+                    <mat-option value="part-time">
+                      Part Time
+                    </mat-option>
+                    <mat-option value="internship">
+                      Internship
+                    </mat-option>
+                    <mat-option value="remotly">
+                      Remotly
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="exp.get('jobType').errors && exp.get('jobType').touched">Job type is required</mat-error>
+              </div>
+
+            <mat-form-field class="col-12 col-md-6" appearance="fill">
+              <mat-label>Enter start and end date</mat-label>
+              <mat-date-range-input [rangePicker]="range">
+                <input matStartDate formControlName="startDate" placeholder="Start date">
+                <mat-error *ngIf="exp.get('startDate').errors && exp.get('startDate').touched">Please enter your start date</mat-error>
+                <input matEndDate formControlName="endDate" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="range"></mat-datepicker-toggle>
+              <mat-date-range-picker #range></mat-date-range-picker>
+            </mat-form-field>
+    
+            <div class="col-9 mx-auto">
+                <button type="submit" class="btn btn-primary col-12" 
+                [disabled]="exp.invalid"
+              >Add Experience</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

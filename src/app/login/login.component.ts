@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   submitLogin(): void {
     this.authService.loginUser(this.model, this.userType === "seeker" ? "job_seeker" : "employer")
       .subscribe(
-        (token: string) => {
+        _ => {
           this.authService.userType = this.userType;
           this.dialogRef.close("pizza");
           this.router.navigate([this.authService.redirectUrl])

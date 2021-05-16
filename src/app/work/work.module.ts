@@ -20,9 +20,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input"; 
 import { JobRequirementsComponent } from './job-requirements/job-requirements.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { JobSeekerComponent } from './job-seeker/job-seeker.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, JobSeekerComponent, ExperienceComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,
@@ -37,7 +44,12 @@ import { JobsComponent } from './jobs/jobs.component';
     MatCardModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
+    ReactiveFormsModule
   ],
 
   exports: [

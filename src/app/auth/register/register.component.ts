@@ -11,13 +11,15 @@ import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+import { SeekerService } from 'src/app/shared/services/seeker.service';
+import { Seeker } from 'src/app/core/models/seeker.interface';
 
 @Component({
   selector: 'app-register',
@@ -34,6 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   @ViewChild("bachelor", { static: true }) bachelor: ElementRef;
   @ViewChild("langName", { static: true }) langName: MatSelect;
   @ViewChild("langLevel", { static: true }) langLevel: MatSelect;
+  isEditMode: boolean;
   seekerImg: File;
   filePath: string = "images/profile";
   uploadPercent: Observable<number>;
@@ -101,20 +104,69 @@ export class RegisterComponent implements OnInit, OnDestroy {
   isConfidential: boolean = false;
   isLocationValid: boolean = true;
   downloadUrl: string;
+  $seeker: Subscription;
+  $interests: Subscription;
 
   constructor(
     private fb: FormBuilder, 
     private dataService: DataService, 
     private authService: AuthService,
+    private seekerService: SeekerService,
     private dialog: MatDialog,
     private router: Router,
+    private route: ActivatedRoute,
     private storage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
     this.student.nativeElement.click();
     this.bachelor.nativeElement.click();
-    console.log(this.generalInfo);
+    this.isEditMode = !!this.route.snapshot.params["id"];
+    if (this.isEditMode) {
+      this.$seeker = this.seekerService.getSeeker()
+        .subscribe(
+          (seeker: Seeker) => {
+            this.generalInfo = this.fb.group({
+              first_name: [seeker.first_name, [Validators.required, Validators.minLength(3)]],
+              last_name: [seeker.last_name, [Validators.required, Validators.minLength(3)]],
+              birth_date: [{value: null, disabled: true}, [Validators.required]],
+              gender: [{value: null, disabled: true}, [Validators.required]],
+              location: [seeker.location, [Validators.required]],
+              marital_status: [seeker.marital_status, [Validators.required]],
+              military_status: [seeker.military_status, [Validators.required]],
+              image_url: [seeker.image_url],
+              phone: [seeker.phone_num, 
+                      [numberValidator, 
+                        Validators.minLength(11)], 
+                        new UniquePhoneValidator(this.dataService).validate.bind(this)
+                      ],
+              email: [
+                {value: null, disabled: true}],
+              password: [{value: null, disabled: true},],
+            });
+          }
+        );
+
+      this.$interests = this.seekerService.getInterests()
+          .subscribe(
+            (interests: any) => {
+              this.careerInterests = this.fb.group({
+                min_salary: [interests.interests.min_salary, salaryValidator.bind(this)],
+    
+                status: [interests.interests.status, Validators.required],
+                careerLevel: [interests.interests.career_level],
+            
+                jobTypes: this.fb.array(
+                  [...interests.types.map((item: string) => this.fb.control(item))]
+                  ),
+            
+                expYears: [interests.interests.expYears, [Validators.min(0), Validators.max(15), Validators.required]],
+                educationLevel: [interests.interests.educationLevel, Validators.required],
+              });
+              // this.selectLevel(interests.interests.career_level);
+            }
+          )
+    }
   }
 
   addTitle(e: MatChipInputEvent): void {
@@ -235,6 +287,33 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.seekerImg = null;
   }
 
+  updateForm(form: {[key: string]: string}, action: string): void {
+    this.authService.updateForm(form, action)
+      .subscribe(
+        async (res: string) => {
+          if (action === "interests") {
+            const swal = (await import("sweetalert2")).default;
+            return swal.fire({
+              title: "Profile updated successfully",
+              icon: "success",
+              confirmButtonText: "Find jobs",
+              denyButtonText: "Return to homepage",
+              showConfirmButton: true,
+              showDenyButton: true
+            })
+            .then(value => {
+              if (value.isConfirmed) {
+                this.router.navigate(["/work/explore"])
+              } else if (value.isDenied) {
+                this.router.navigate(["/home"])
+              }
+            })
+          }
+          this.stepper.next();
+        }
+      )
+  }
+
   async submitForm(form: {[key: string]: string}, action: string): Promise<void> {
     this.authService.registerForm(form, action)
     .subscribe(
@@ -262,7 +341,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             })
           }
           this.stepper.next();
-          console.log(res);
         },
         (error: any) => {
           console.log(error);

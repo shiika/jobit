@@ -29,6 +29,19 @@ export class AuthService {
         )
     }
 
+    updateForm(form: {[key: string]: string}, action: string): Observable<string> {
+        return this.http.put(API_URLS["seeker"].update[action], form, {
+            headers: new HttpHeaders({
+                "x-auth-token": localStorage.getItem("token")
+            }),
+            responseType: "text"
+        })
+        .pipe(
+            take(1),
+            catchError(handleError)
+        )
+    }
+
     registerEmp(formInfo: {[key: string]: string}) {
         return this.http.post(API_URLS.emp.register, formInfo, {
             headers: new HttpHeaders({

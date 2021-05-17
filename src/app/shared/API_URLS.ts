@@ -2,7 +2,7 @@ import { environment as env } from "../../environments/environment";
 
 const server = env.serverURL;
 
-export const API_URLS: {[key: string]: {[key: string]: string}} = {
+export const API_URLS: any = {
     seeker: {
         login: server + "/auth/login",
         register: server + "/auth/register",
@@ -16,6 +16,12 @@ export const API_URLS: {[key: string]: {[key: string]: string}} = {
         langs: server + "/seeker/langs",
         edu: server + "/seeker/edu",
         exp: server + "/seeker/exp",
+        getInterests: server + "/seeker/get-interests",
+        update: {
+            general: server + "/seeker/update",
+            interests: server + "/seeker/update-interests",
+            prof: server + "/seeker/update-prof"
+        }
     },
 
     emp: {

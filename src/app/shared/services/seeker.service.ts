@@ -28,6 +28,14 @@ export class SeekerService {
   }).pipe(take(1))
   }
 
+  getInterests(): Observable<{[key: string]: string}> {
+    return this.http.get<{[key: string]: string}>(API_URLS["seeker"].getInterests, {
+      headers: new HttpHeaders({
+          "x-auth-token": localStorage.getItem("token")
+      })
+  }).pipe(take(1))
+  }
+
   getSkills(): Observable<string[]> {
     return this.http.get<string[]>(API_URLS["seeker"].skills, {
       headers: new HttpHeaders({

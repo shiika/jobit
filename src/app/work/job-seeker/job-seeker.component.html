@@ -7,7 +7,7 @@
                     <h3> {{ seeker.first_name }} {{ seeker.last_name }} </h3>
                     <h4> {{seeker.role_name}} </h4>
                 </div>
-                <button mat-icon-button *ngIf="!isMobile"><mat-icon color="primary">edit</mat-icon></button>
+                <button mat-icon-button *ngIf="!isMobile"><mat-icon color="primary" [routerLink]="['/auth/edit', seeker.first_name]">edit</mat-icon></button>
                 <button class="btn btn-primary" type="button" *ngIf="isMobile">Edit Profile</button>
             </div>
 

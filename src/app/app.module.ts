@@ -16,6 +16,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, BUCKET } from "@angular/fire/storage";
 import { environment } from 'src/environments/environment';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { environment } from 'src/environments/environment';
     MatDialogModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatMenuModule,
     QuicklinkModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule

@@ -52,9 +52,17 @@ export class AuthService {
                 saveToken(credentials);
                 this.userId = credentials.userId;
                 this.isLoggedIn = true;
+                this.autoLogout();
                 this.redirectUrl = userType === "job_seeker" ? "/work/explore" : "/find/emps" 
             })
         )
+    }
+
+    autoLogin(): void {
+        const token = localStorage.getItem("token");
+        if (token) {
+            this.isLoggedIn = true;
+        }
     }
 
     logout(): void {
@@ -64,8 +72,18 @@ export class AuthService {
         this.router.navigate(["/"])
     }
 
+    autoLogout(): void {
+        setTimeout(() => {
+            this.logout();
+        }, 1000 * 60 * 60)
+    }
+
     get getUserId(): number {
         return this.userId;
+    }
+
+    get logState(): boolean {
+        return this.isLoggedIn
     }
 
     

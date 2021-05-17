@@ -1,0 +1,117 @@
+<section class="login">
+    <div class="container">
+  
+      <div class="row">
+        <div class="login__img col-4 d-none d-md-block">
+          <img src="../../assets/img/linkedin-sales-navigator-EI50ZDA-l8Y-unsplash.jpg" alt="Working girl" class="mw-100">
+        </div>
+  
+        <div class="login__content col-12 col-md-8 d-flex align-items-center">
+  
+          <form [formGroup]="edu" (ngSubmit)="submitLogin()" class="row">
+
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Graduation Degree</mat-label>
+                <mat-select formControlName="degreeLevel">
+                  <mat-option value="bachelor">
+                    Bachelor's
+                  </mat-option>
+                  <mat-option value="doctorate">
+                    Doctorate
+                  </mat-option>
+                  <mat-option value="masters">
+                    Masters
+                  </mat-option>
+                  <mat-option value="diploma">
+                    Diploma
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="edu.get('degreeLevel').errors && edu.get('degreeLevel').touched">Graduation Degree is required</mat-error>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>University/Institution</mat-label>
+                <mat-select #instit formControlName="institution">
+                  <mat-option value="helwan university">
+                    University of Helwan
+                  </mat-option>
+                  <mat-option value="cairo university">
+                    University of Cairo
+                  </mat-option>
+                  <mat-option value="auc">
+                    American University in Cairo
+                  </mat-option>
+                  <mat-option value="ain shams university">
+                    Univerisy of Ain Shams
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="edu.get('institution').errors && edu.get('institution').touched">Graduation Degree is required</mat-error>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Field of Study</mat-label>
+                <mat-select #study formControlName="fieldOfStudy">
+                  <mat-option value="engineering">
+                    Engineering
+                  </mat-option>
+                  <mat-option value="accounting">
+                    Accounting
+                  </mat-option>
+                  <mat-option value="medicine">
+                    Medicine
+                  </mat-option>
+                  <mat-option value="science">
+                    Science
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Grade</mat-label>
+                <mat-select #grade formControlName="grade">
+                  <mat-option value="A">
+                    Excellent
+                  </mat-option>
+                  <mat-option value="B">
+                    Very Good
+                  </mat-option>
+                  <mat-option value="C">
+                    Good
+                  </mat-option>
+                  <mat-option value="D">
+                    Fair
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+                <mat-error *ngIf="edu.get('grade').errors && edu.get('grade').touched">Job type is required</mat-error>
+              </div>
+
+            <mat-form-field class="col-12 col-md-6" appearance="fill">
+              <mat-label>Enter start and end date</mat-label>
+              <mat-date-range-input [rangePicker]="range">
+                <input matStartDate formControlName="startDate" placeholder="Start date">
+                <mat-error *ngIf="edu.get('startDate').errors && edu.get('startDate').touched">Please enter your start date</mat-error>
+                <input matEndDate formControlName="endDate" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="range"></mat-datepicker-toggle>
+              <mat-date-range-picker #range></mat-date-range-picker>
+            </mat-form-field>
+    
+            <div class="col-9 mx-auto">
+                <button type="submit" class="btn btn-primary col-12" 
+                [disabled]="edu.invalid"
+              >Add Education</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

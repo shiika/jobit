@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from "rxjs/operators";
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -75,12 +76,14 @@ import { LoginComponent } from '../login/login.component';
 export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false;
   navbarState: string = "navDown";
+  isLoggedIn: boolean = false;
   @ViewChild("navbar", {static: true}) navbarElement: ElementRef;
   lastScrollY: number = 0;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.auth.logState;
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
     const scrollEvent = fromEvent(window, "scroll");
     scrollEvent.pipe(
@@ -103,6 +106,8 @@ export class NavbarComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: "900px"
     });
+    this.isCollapsed = false;
+
 
     dialogRef.afterClosed().subscribe(_ => {
       console.log("Login has been closed!");
@@ -111,6 +116,10 @@ export class NavbarComponent implements OnInit {
 
   toggleNavbar(e: any) {
     this.isCollapsed = e.target.className.includes("navbar-collapse") ? false : true;
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
 }

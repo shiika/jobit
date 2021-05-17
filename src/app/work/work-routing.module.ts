@@ -9,14 +9,15 @@ import { WorkComponent } from './work.component';
 import { ProfileResolverService } from "../shared/services/resolvers/profile.resolver.service";
 import { SkillsResolverService } from "../shared/services/resolvers/skills-resolver.service";
 import { LangsResolverService } from "../shared/services/resolvers/langs-resolver.service";
+import { SeekerGuard } from '../core/guards/seeker.guard';
 
 const routes: Routes = [
 
   {
-    path: "", component: WorkComponent, children: [
+    path: "", component: WorkComponent, canActivate: [SeekerGuard], children: [
       {
         path: "me", 
-        component: JobSeekerComponent, 
+        component: JobSeekerComponent,
         resolve: { 
           profile: ProfileResolverService,
           skills: SkillsResolverService,

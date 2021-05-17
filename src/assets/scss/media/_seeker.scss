@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+@include media-breakpoint-down(sm) {
+    .seeker {
+
+        &__card {
+
+            &__header {
+
+                flex-direction: column;
+
+                img {
+                    width: 100%;
+                }
+
+                h3 {
+                    margin-top: 0.7rem;
+                }
+
+                h4 {
+                    margin-top: 0.4rem;
+                }
+            }
+        }
+    }
+}

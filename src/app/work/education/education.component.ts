@@ -1,23 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { salaryValidator } from 'src/app/core/validators/salary.validator';
-import { LoginComponent } from 'src/app/login/login.component';
-import { SeekerService } from 'src/app/shared/services/seeker.service';
+import { salaryValidator } from '../../core/validators/salary.validator';
+import { LoginComponent } from '../../login/login.component';
+import { SeekerService } from '../../shared/services/seeker.service';
 
 @Component({
-  selector: 'app-experience',
-  templateUrl: './experience.component.html',
-  styleUrls: ['./experience.component.scss'],
+  selector: 'app-education',
+  templateUrl: './education.component.html',
+  styleUrls: ['./education.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ExperienceComponent implements OnInit {
+export class EducationComponent implements OnInit {
   
-  exp: FormGroup = this.fb.group({
-    companyName: ["", [Validators.required]],
-    salary: ["", [Validators.required, salaryValidator]],
-    title: ["", Validators.required],
-    jobType: ["Full Time", Validators.required],
+  edu: FormGroup = this.fb.group({
+    degreeLevel: ["", [Validators.required]],
+    institution: ["", [Validators.required]],
+    fieldOfStudy: ["", Validators.required],
+    grade: ["", Validators.required],
     startDate: [null, Validators.required],
     endDate: [null, Validators.required],
   })
@@ -31,12 +31,12 @@ export class ExperienceComponent implements OnInit {
   }
 
   submitLogin(): void {
-    this.seeker.addExp(this.exp.value)
+    this.seeker.addEdu(this.edu.value)
       .subscribe(
         async (res: string) => {
           const swal = (await import("sweetalert2")).default;
           swal.fire({
-            title: "Experience has been added",
+            title: "Education has been added",
             icon: "success",
             confirmButtonText: "Done",
             showConfirmButton: true

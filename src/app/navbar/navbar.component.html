@@ -12,16 +12,16 @@
           <div class="collapse navbar-collapse justify-content-end show" (click)="toggleNavbar($event)" *ngIf="isCollapsed" id="navbarNav" @buttonsAnimation [@navbarCollapse]="isCollapsed ? 'collapseEnd' : 'collapseStart'">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link mr-2 text-dark" (click)="toggleLogin($event)" style="cursor: pointer;">Login</a>
+                <a class="nav-link mr-2 text-dark" *ngIf="!isLoggedIn" (click)="toggleLogin($event)" style="cursor: pointer;">Login</a>
               </li>
               <li class="nav-item">
                   <button type="button" class="btn btn-primary mr-3" [routerLink]="['/auth/register']">
-                    Join Now
+                    {{isLoggedIn ? "Find Jobs" : "Join Now"}}
                   </button>
               </li>
               <li class="nav-item">
                 <button type="button" class="btn btn-success text-white" [routerLink]="['/auth/emp-register']">
-                    Employer?
+                    {{isLoggedIn ? "View Profile" : "Employer?"}}
                 </button>
               </li>
             </ul>

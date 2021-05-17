@@ -1,32 +1,35 @@
 @import "../../../assets/scss/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 .seeker {
     min-height: 100vh;
-
+    
     .list-group-flush > .list-group-item {
         border: none;
     }
-
+    
     .header {
         font-size: 1.2rem;
     }
-
+    
     h3 {
         font-size: 1.2rem;
         color: $text-primary;
         margin-bottom: 0.3rem;
     }
-
+    
     &__edu {
         box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
         -webkit-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
         -moz-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
     }
-
+    
     &__exp, &__edu {
         padding: 1rem;
         // background-color: #f1efef;
-
+        
         .header {
             mat-icon {
                 height: 40px;
@@ -40,8 +43,8 @@
                 background-color: #0351ff;
             }
         }
-
-
+        
+        
         &__item {
             margin-top: 0.8rem;
             margin-bottom: 0.8rem;
@@ -51,49 +54,49 @@
             box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
             -webkit-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
             -moz-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
-
+            
             li {
                 padding: 0.2rem 1.25rem;
                 padding-left: 0.2rem;
                 font-size: 0.8rem;
             }
-
+            
             h4 {
                 color: $primary;
                 font-size: 0.8rem;
             }
-
+            
             &__add {
                 border-style: dashed;
-
+                
                 mat-icon {
                     transition: all 0.3s;
                 }
-
+                
                 &:hover {
-
+                    
                     mat-icon {
                         color: #fff;
                     }
                 }
             }
         }
-
+        
         &__title {
             margin-bottom: 0.2rem;
         }
     }
-
+    
     &__card {
         padding: 1rem;
         box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
         -webkit-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
         -moz-box-shadow: 0px 0px 10px 0px rgb(130 127 127 / 64%);
-
+        
         div:not(.header) {
             font-size: 0.8rem;
         }
-
+        
         &__header {
             display: flex;
             justify-content: space-between;
@@ -102,7 +105,7 @@
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
         }
-
+        
         img {
             width: 80px;
             border-radius: 10px;
@@ -111,36 +114,38 @@
         &__info {
             flex-grow: 2;
             padding-left: 0.8rem;
-
+            
             h4 {
                 color: $primary;
                 font-size: 0.8rem;
             }
         }
-
+        
         &__bio {
-
+            
             h3 {
                 font-size: 1.2rem;
             }
-
+            
             p {
                 color: $heading-color;
             }
         }
-
+        
         &__contact, &__langs {
-
+            
             li {
                 padding-left: 0.2rem;
             }
         }
-
+        
         &__skills {
-
+            
             button {
                 margin: 0.3rem;
             }
         }
     }
 }
+
+@import "../../../assets/scss/media/seeker";

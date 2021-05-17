@@ -7,7 +7,8 @@
                     <h3> {{ seeker.first_name }} {{ seeker.last_name }} </h3>
                     <h4> {{seeker.role_name}} </h4>
                 </div>
-                <button mat-icon-button><mat-icon color="primary">edit</mat-icon></button>
+                <button mat-icon-button *ngIf="!isMobile"><mat-icon color="primary">edit</mat-icon></button>
+                <button class="btn btn-primary" type="button" *ngIf="isMobile">Edit Profile</button>
             </div>
 
             <hr>
@@ -108,7 +109,7 @@
 
             <hr>
 
-            <button class="btn btn-outline-primary d-flex justify-content-center align-items-center w-100 seeker__exp__item__add" (click)="toggleExp()"><mat-icon color="primary">add</mat-icon></button>
+            <button class="btn btn-outline-primary d-flex justify-content-center align-items-center w-100 seeker__exp__item__add" (click)="toggleEdu()"><mat-icon color="primary">add</mat-icon></button>
         </div>
     </div>
 </section>

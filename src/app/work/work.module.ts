@@ -27,9 +27,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { EducationComponent } from './education/education.component';
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, JobSeekerComponent, ExperienceComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, JobSeekerComponent, ExperienceComponent, EducationComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

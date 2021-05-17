@@ -8,6 +8,7 @@ export function handleError(error: HttpErrorResponse): Observable<any> {
         return throwError("An error occured. Please check your network connection")
     }
     else {
+        console.log(error);
         console.error(
             `Server Error: ${error.error} \n Response Status: ${error.status}`);
 

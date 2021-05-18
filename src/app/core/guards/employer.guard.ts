@@ -23,10 +23,12 @@ export class EmployerGuard implements CanActivate, CanLoad {
     }
 
   private checkLogin(url: string): boolean|UrlTree {
+    console.log(this.auth.isLoggedIn, this.auth.userType)
     if (this.auth.isLoggedIn && this.auth.userType === "employer") { return true; }
 
     // Store the attempted URL for redirecting
     this.auth.redirectUrl = url;
+    console.log("unauthorized")
 
     // Redirect to the login page
     const dialogRef = this.dialog.open(LoginComponent, {

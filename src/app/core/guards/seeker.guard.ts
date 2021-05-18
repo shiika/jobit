@@ -23,7 +23,7 @@ export class SeekerGuard implements CanActivate, CanLoad {
     }
 
   private checkLogin(url: string): boolean|UrlTree {
-    if (this.auth.isLoggedIn) { return true; }
+    if (this.auth.isLoggedIn && this.auth.userType === "job_seeker") { return true; }
 
     // Store the attempted URL for redirecting
     this.auth.redirectUrl = url;

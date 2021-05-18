@@ -14,10 +14,18 @@ export class ProfileResolverService implements Resolve<Seeker> {
   constructor(private seeker: SeekerService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Seeker> | Observable<never> {
-
-    return this.seeker.getSeeker()
-      .pipe(
-        take(1),
-        catchError(handleError))
+    const seekerId = route.params["id"];
+    console.log(seekerId);
+    if (seekerId) {
+      return this.seeker.getSeeker(seekerId)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    } else {
+      return this.seeker.getSeeker(null)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    }
   }
 }

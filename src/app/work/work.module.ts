@@ -20,7 +20,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input"; 
 import { JobRequirementsComponent } from './job-requirements/job-requirements.component';
 import { JobsComponent } from './jobs/jobs.component';
-import { JobSeekerComponent } from './job-seeker/job-seeker.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,7 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { EducationComponent } from './education/education.component';
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, JobSeekerComponent, ExperienceComponent, EducationComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

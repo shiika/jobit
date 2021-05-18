@@ -4,6 +4,10 @@ import { QuicklinkStrategy } from 'ngx-quicklink';
 import { HomeComponent } from './home/home.component';
 import { EmployerGuard } from "./core/guards/employer.guard";
 import { SeekerGuard } from "./core/guards/seeker.guard";
+import { JobSeekerComponent } from './job-seeker/job-seeker.component';
+import { LangsResolverService } from './shared/services/resolvers/langs-resolver.service';
+import { ProfileResolverService } from './shared/services/resolvers/profile.resolver.service';
+import { SkillsResolverService } from './shared/services/resolvers/skills-resolver.service';
 
 const routes: Routes = [
   {
@@ -21,6 +25,9 @@ const routes: Routes = [
   },
   {
     path: "", redirectTo: "home", pathMatch: "full"
+  },
+  {
+    path: "**", redirectTo: "home", pathMatch: "full"
   }
 ];
 

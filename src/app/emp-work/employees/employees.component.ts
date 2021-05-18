@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EmpService } from 'src/app/shared/services/emp.service';
 import { Employee } from "../../core/models/employee.model";
 
 @Component({
@@ -7,93 +9,18 @@ import { Employee } from "../../core/models/employee.model";
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
-  employees: Employee[] = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      title: "Frontend Developer",
-      salary: "4000",
-      skills: ["HTML", "CSS", "Javascript"],
-      img: ""
-    },
-    
-  ];
+  employees: Employee[] = [];
 
-  constructor() { }
+  constructor(private employer: EmpService) { }
 
   ngOnInit(): void {
+    console.log(this.employees)
+    this.employer.getEmployees()
+      .subscribe(
+        (emps: Employee[]) => {
+          this.employees = emps;
+        }
+      )
   }
 
 }

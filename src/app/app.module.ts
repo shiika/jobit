@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, BUCKET } from "@angular/fire/storage";
 import { environment } from 'src/environments/environment';
 import { MatMenuModule } from '@angular/material/menu';
+import { JobSeekerComponent } from './job-seeker/job-seeker.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
+    JobSeekerComponent
   ],
   imports: [
     BrowserModule,

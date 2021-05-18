@@ -62,6 +62,10 @@ export class AuthService {
             take(1),
             catchError(handleError),
             tap((credentials: {[key: string]: any}) => {
+                const expire = new Date(Date.now() + 60 * 60 * 1000);
+                localStorage.setItem("expireDate", expire.toString());
+                localStorage.setItem("userType", userType);
+                this.userType = userType;
                 saveToken(credentials);
                 this.userId = credentials.userId;
                 this.isLoggedIn = true;
@@ -73,13 +77,16 @@ export class AuthService {
 
     autoLogin(): void {
         const token = localStorage.getItem("token");
+        this.userType = localStorage.getItem("userType");
         if (token) {
             this.isLoggedIn = true;
+            this.autoLogout();
         }
     }
 
     logout(): void {
         localStorage.removeItem("token");
+        localStorage.removeItem("expireDate");
         this.userId = null;
         this.isLoggedIn = false;
         this.router.navigate(["/"])
@@ -87,8 +94,8 @@ export class AuthService {
 
     autoLogout(): void {
         setTimeout(() => {
-            this.logout();
-        }, 1000 * 60 * 60)
+            this.logout()
+        }, new Date(localStorage.getItem("expireDate")).getTime() - Date.now());
     }
 
     get getUserId(): number {

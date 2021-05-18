@@ -14,9 +14,17 @@ export class LangsResolverService implements Resolve<{name: string; level: strin
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<{name: string; level: string}[]> | Observable<never> {
 
-    return this.seeker.getLangs()
-      .pipe(
-        take(1),
-        catchError(handleError))
+    const seekerId = route.params["id"];
+    if (seekerId) {
+      return this.seeker.getLangs(seekerId)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    } else {
+      return this.seeker.getLangs(null)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    }
   }
 }

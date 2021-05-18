@@ -14,9 +14,17 @@ export class SkillsResolverService implements Resolve<string[]> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string[]> | Observable<never> {
 
-    return this.seeker.getSkills()
-      .pipe(
-        take(1),
-        catchError(handleError))
+    const seekerId = route.params["id"];
+    if (seekerId) {
+      return this.seeker.getSkills(seekerId)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    } else {
+      return this.seeker.getSkills(null)
+        .pipe(
+          take(1),
+          catchError(handleError))
+    }
   }
 }

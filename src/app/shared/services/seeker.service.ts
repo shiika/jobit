@@ -20,10 +20,11 @@ export class SeekerService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getSeeker(): Observable<Seeker> {
+  getSeeker(id: string | null): Observable<Seeker> {
     return this.http.get<Seeker>(API_URLS["seeker"].profile, {
       headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token")
+          "x-auth-token": localStorage.getItem("token"),
+          "seeker-id": id
       })
   }).pipe(take(1))
   }
@@ -36,15 +37,16 @@ export class SeekerService {
   }).pipe(take(1))
   }
 
-  getSkills(): Observable<string[]> {
+  getSkills(id: string): Observable<string[]> {
     return this.http.get<string[]>(API_URLS["seeker"].skills, {
       headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token")
+          "x-auth-token": localStorage.getItem("token"),
+          "seeker-id": id
       })
   }).pipe(take(1))
   }
 
-  getLangs(): Observable<{name: string; level: string}[]> {
+  getLangs(id: string): Observable<{name: string; level: string}[]> {
     return this.http.get<{name: string; level: string}[]>(API_URLS["seeker"].langs, {
       headers: new HttpHeaders({
           "x-auth-token": localStorage.getItem("token")
@@ -53,11 +55,12 @@ export class SeekerService {
       .pipe(take(1))
   }
 
-  getExp(): Observable<Experience[]> {
+  getExp(id: string): Observable<Experience[]> {
     console.log(this.auth.getUserId);
     return this.http.get<Experience[]>(API_URLS["seeker"].exp, {
       headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token")
+          "x-auth-token": localStorage.getItem("token"),
+          "seeker-id": id
       })
       })
       .pipe(
@@ -114,10 +117,11 @@ export class SeekerService {
         }))
   }
 
-  getEdu(): Observable<Education[]> {
+  getEdu(id: string): Observable<Education[]> {
     return this.http.get<Education[]>(API_URLS["seeker"].edu, {
       headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token")
+          "x-auth-token": localStorage.getItem("token"),
+          "seeker-id": id
       })
       })
       .pipe(

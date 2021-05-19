@@ -15,12 +15,12 @@
                 <a class="nav-link mr-2 text-dark" *ngIf="!isLoggedIn" (click)="toggleLogin($event)" style="cursor: pointer;">Login</a>
               </li>
               <li class="nav-item">
-                  <button type="button" class="btn btn-primary mr-3" [routerLink]="[isLoggedIn ? '/work/explore' : '/auth/register']">
-                    {{isLoggedIn ? "Find Jobs" : "Join Now"}}
+                  <button type="button" class="btn btn-primary mr-3" [routerLink]="[isLoggedIn ? getLink() : '/auth/register']">
+                    {{isLoggedIn ? getText() : "Join Now"}}
                   </button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-success text-white" [routerLink]="[isLoggedIn ? '/auth/emp-register' : '/work/me']">
+                <button type="button" class="btn btn-success text-white" [routerLink]="[isLoggedIn ? '/work/me' : '/auth/emp-register']">
                     {{isLoggedIn ? "View Profile" : "Employer?"}}
                 </button>
               </li>

@@ -1,6 +1,7 @@
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from "rxjs/operators";
 import { LoginComponent } from '../login/login.component';
@@ -77,6 +78,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed: boolean = false;
   navbarState: string = "navDown";
   isLoggedIn: boolean = false;
+  userType: string;
   @ViewChild("navbar", {static: true}) navbarElement: ElementRef;
   lastScrollY: number = 0;
 
@@ -84,6 +86,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.auth.logState;
+    this.auth.$user
+      .subscribe(
+        (type: string) => {
+          this.userType = type;
+        }
+      )
     window.innerWidth >= 992 ? this.isCollapsed = true : this.isCollapsed = false;
     const scrollEvent = fromEvent(window, "scroll");
     scrollEvent.pipe(
@@ -112,6 +120,14 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(_ => {
       console.log("Login has been closed!");
     })
+  }
+
+  getText(): string {
+    return this.userType === "job_seeker" ? "Find Jobs" : "Find Employees"
+  }
+
+  getLink(): string {
+    return this.userType === "job_seeker" ? "/work/explore" : "/find/emps"
   }
 
   toggleNavbar(e: any) {

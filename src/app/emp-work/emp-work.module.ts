@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from "@angular/material/slider"
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EmpService } from "../shared/services/emp.service";
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { EmpService } from "../shared/services/emp.service";
     ReactiveFormsModule,
     CKEditorModule,
     FormsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatMenuModule
   ],
   exports: [CKEditorModule],
   providers: [EmpService]

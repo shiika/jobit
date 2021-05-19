@@ -28,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { EducationComponent } from './education/education.component';
 
+
 @NgModule({
   declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent ],
   imports: [

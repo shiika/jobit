@@ -10,6 +10,10 @@ import { UniqueEmailValidator } from 'src/app/core/validators/email.validator';
 import { UniquePhoneValidator } from 'src/app/core/validators/phone.validator';
 import { DataService } from '../../shared/services/data.service';
 import { numberValidator } from '../../core/validators/number.validator';
+import { Observable } from 'rxjs/internal/Observable';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize, take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-emp-register',
@@ -18,6 +22,9 @@ import { numberValidator } from '../../core/validators/number.validator';
 })
 export class EmpRegisterComponent implements OnInit {
   locations: string[] = ["Cairo", "Giza", "Mansoura", "Alex"];
+  uploadPercent: Observable<number>;
+  seekerImg: File;
+  $taskSub: Subscription;
 
   empForm: FormGroup = this.fb.group({
     firstName: this.fb.control("", Validators.required),
@@ -41,7 +48,8 @@ export class EmpRegisterComponent implements OnInit {
       website: this.fb.control("", Validators.required),
       locations: this.fb.array([
         
-      ], [Validators.required, Validators.minLength(1)])
+      ], [Validators.required, Validators.minLength(1)]),
+      logo: [""]
     })
   });
 
@@ -51,7 +59,8 @@ export class EmpRegisterComponent implements OnInit {
     private dataService: DataService, 
     private authService: AuthService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
   }
@@ -69,6 +78,28 @@ export class EmpRegisterComponent implements OnInit {
     e.value.forEach((location: string) => {
       this.comLocations.push(this.fb.control(location));
     });
+  }
+
+  // Drag and drop profile photo
+  onSelect(event: any) {
+    this.seekerImg = event.addedFiles[0];
+    console.log(event)
+    const filePath = `logos/${this.seekerImg.name}-${this.empForm.get("companyForm.name").value}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.seekerImg);
+
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+
+    // get notified when the download URL is available
+    this.$taskSub = task.snapshotChanges().pipe(
+        finalize(() => {fileRef.getDownloadURL().pipe(take(1)).subscribe(link => {this.empForm.get("companyForm.logo").setValue(link); console.log(link)})})
+     )
+    .subscribe()
+  }
+
+  onRemove() {
+    this.seekerImg = null;
   }
 
   empSubmit(): void {

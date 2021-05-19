@@ -5,6 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { salaryValidator } from 'src/app/core/validators/salary.validator';
 import { EmpService } from 'src/app/shared/services/emp.service';
 
 @Component({
@@ -21,13 +22,13 @@ export class JobPostComponent implements OnInit {
 
 
   post: FormGroup = this.fb.group({
-    title: this.fb.control("software engineer", Validators.required),
-    experience: this.fb.control(1),
-    salary: this.fb.control(4000, Validators.required),
+    title: this.fb.control("", Validators.required),
+    experience: this.fb.control(0),
+    salary: this.fb.control(4000, [Validators.required, salaryValidator]),
     publishDate: this.fb.control(new Date),
     skills: this.fb.array([
-      this.fb.control("Teamwork"), this.fb.control("Java"), this.fb.control("python")
-    ], [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      this.fb.control("Teamwork")
+    ], [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
     description: this.fb.control("<p>Hello Jobs</p>", Validators.required),
     vacancies: this.fb.control(1),
     expireDate: this.fb.control(new Date(new Date().setDate(new Date().getDate() + 10))),
@@ -90,7 +91,7 @@ export class JobPostComponent implements OnInit {
       async _ => {
             const swal = (await import("sweetalert2")).default;
             swal.fire({
-              title: "Wait for your employers",
+              title: "Wait for your employees",
               text: "Your Job Post is Now LIVE",
               icon: "success",
               confirmButtonText: "Find Employers",

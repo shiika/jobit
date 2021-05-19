@@ -15,17 +15,21 @@ import { handleError } from 'src/app/core/utils/handleError.util';
 export class SeekerService {
   $experiences: BehaviorSubject<Experience[]> = new BehaviorSubject<Experience[]>(null);
   $education: BehaviorSubject<Education[]> = new BehaviorSubject<Education[]>(null);
+  customHeaders: HttpHeaders = new HttpHeaders({
+    "x-auth-token": localStorage.getItem("token")
+  });
   public experiences: Experience[] = [];
   public educations: Education[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getSeeker(id: string | null): Observable<Seeker> {
+  getSeeker(id: string): Observable<Seeker> {
+    let headers: HttpHeaders = this.customHeaders;
+    if (id != null) {
+      headers = this.customHeaders.append("seeker-id", id)
+    }
     return this.http.get<Seeker>(API_URLS["seeker"].profile, {
-      headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token"),
-          "seeker-id": id
-      })
+      headers: headers
   }).pipe(take(1))
   }
 
@@ -38,30 +42,34 @@ export class SeekerService {
   }
 
   getSkills(id: string): Observable<string[]> {
+    let headers: HttpHeaders = this.customHeaders;
+    if (id != null) {
+      headers = this.customHeaders.append("seeker-id", id)
+    }
     return this.http.get<string[]>(API_URLS["seeker"].skills, {
-      headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token"),
-          "seeker-id": id
-      })
+      headers: headers
   }).pipe(take(1))
   }
 
   getLangs(id: string): Observable<{name: string; level: string}[]> {
+    let headers: HttpHeaders = this.customHeaders;
+    if (id != null) {
+      headers = this.customHeaders.append("seeker-id", id)
+    }
+    console.log(headers);
     return this.http.get<{name: string; level: string}[]>(API_URLS["seeker"].langs, {
-      headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token")
-      })
+      headers: headers
       })
       .pipe(take(1))
   }
 
   getExp(id: string): Observable<Experience[]> {
-    console.log(this.auth.getUserId);
+    let headers: HttpHeaders = this.customHeaders;
+    if (id != null) {
+      headers = this.customHeaders.append("seeker-id", id)
+    }
     return this.http.get<Experience[]>(API_URLS["seeker"].exp, {
-      headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token"),
-          "seeker-id": id
-      })
+      headers: headers
       })
       .pipe(
         take(1),
@@ -118,11 +126,12 @@ export class SeekerService {
   }
 
   getEdu(id: string): Observable<Education[]> {
+    let headers: HttpHeaders = this.customHeaders;
+    if (id != null) {
+      headers = this.customHeaders.append("seeker-id", id)
+    }
     return this.http.get<Education[]>(API_URLS["seeker"].edu, {
-      headers: new HttpHeaders({
-          "x-auth-token": localStorage.getItem("token"),
-          "seeker-id": id
-      })
+      headers: headers
       })
       .pipe(
         take(1),

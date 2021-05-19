@@ -23,7 +23,7 @@
         justify-content: space-between;
 
         &__img {
-            width: 80px;
+            width: 106px;
             border-radius: 15px;
         }
     }
@@ -32,6 +32,7 @@
 
         display: flex;
         justify-content: space-between;
+        text-transform: capitalize;
 
         h4 {
             font-size: 0.8rem;

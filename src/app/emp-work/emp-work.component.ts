@@ -2,8 +2,7 @@ import { trigger, state, style, transition, group, query, animateChild, animate 
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import * as moment from 'moment';
-import { Job } from '../core/models/job.model';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-emp-work',
@@ -27,7 +26,7 @@ import { Job } from '../core/models/job.model';
           transform: "translateX(-15px)",
           opacity: 0
         }),
-        animate("0.4s ease-out", style({
+        animate("0.8s ease-out", style({
           transform: "translateX(0)",
           opacity: 1
         }))
@@ -75,19 +74,27 @@ export class EmpWorkComponent implements OnInit {
   sidenavLinks: {[key: string]: string}[] = [
     {
       icon: "home",
-      link: "Home"
+      text: "Home",
+      link: "/home"
     },
     {
-      icon: "chat",
-      link: "Messaging"
+      icon: "business center",
+      text: "Find",
+      link: "/find/emps"
+    },
+    {
+      icon: "add_circle",
+      text: "Post Job",
+      link: "/find/post"
     },
     {
       icon: "bookmark",
-      link: "Saved"
+      text: "Saved",
+      link: "/find/saved"
     },
   ];
 
-  constructor(private mediaMatcher: MediaMatcher) {}
+  constructor(private mediaMatcher: MediaMatcher, private auth: AuthService) {}
 
   ngOnInit(): void {
     let viewport = this.mediaMatcher.matchMedia("(max-width: 767.98px)");
@@ -101,6 +108,10 @@ export class EmpWorkComponent implements OnInit {
     if (!isMobile) {
       this.isToggled = !this.isToggled;
     }
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
 }

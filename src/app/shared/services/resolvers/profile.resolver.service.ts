@@ -15,7 +15,6 @@ export class ProfileResolverService implements Resolve<Seeker> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Seeker> | Observable<never> {
     const seekerId = route.params["id"];
-    console.log(seekerId);
     if (seekerId) {
       return this.seeker.getSeeker(seekerId)
         .pipe(

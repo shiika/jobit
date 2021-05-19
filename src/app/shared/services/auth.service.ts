@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { API_URLS } from "../API_URLS";
 import { catchError, take, tap } from "rxjs/operators";
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { User } from "src/app/login/login.component";
 import { handleError } from "../../core/utils/handleError.util";
 import { saveToken } from "../../core/utils/savetoken.util";
@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
+    $user: BehaviorSubject<string> = new BehaviorSubject<string>(null);
     userId: number;
     isLoggedIn: boolean = false;
     redirectUrl: string;
@@ -66,6 +67,7 @@ export class AuthService {
                 localStorage.setItem("expireDate", expire.toString());
                 localStorage.setItem("userType", userType);
                 this.userType = userType;
+                this.$user.next(userType);
                 saveToken(credentials);
                 this.userId = credentials.userId;
                 this.isLoggedIn = true;
@@ -78,6 +80,7 @@ export class AuthService {
     autoLogin(): void {
         const token = localStorage.getItem("token");
         this.userType = localStorage.getItem("userType");
+        this.$user.next(this.userType)
         if (token) {
             this.isLoggedIn = true;
             this.autoLogout();
@@ -87,6 +90,7 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem("token");
         localStorage.removeItem("expireDate");
+        localStorage.removeItem("userType");
         this.userId = null;
         this.isLoggedIn = false;
         this.router.navigate(["/"])

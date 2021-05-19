@@ -3,8 +3,8 @@
         <mat-tab-group mat-stretch-tabs dynamicHeight>
           <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab">
             <div class="tab-container">
-              <app-job *ngFor="let job of (tab == 'Explore' ? jobs : applications); let i = index" [job]="job"
-                [routerLink]="['/work', tab.toLowerCase(), i]" routerLinkActive="active"></app-job>
+              <app-job *ngFor="let job of (tab == 'Explore' ? ($jobs | async) : applications); let i = index" [job]="job"
+                [routerLink]="['/work', tab.toLowerCase(), job.ID]" routerLinkActive="active"></app-job>
             </div>
           </mat-tab>
         </mat-tab-group>

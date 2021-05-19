@@ -1,6 +1,6 @@
 import { style, trigger, state, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { Job } from 'src/app/core/models/job.model';
+import { Job, JobPost } from 'src/app/core/models/job.model';
 
 @Component({
   selector: 'app-job',

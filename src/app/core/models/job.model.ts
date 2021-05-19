@@ -2,8 +2,7 @@ export interface Job {
     companyName: string;
     title: string;
     publishDate: string;
-    image: string;
-    skills: string[];
+    logo?: string;
 }
 
 export interface JobPost {
@@ -15,6 +14,21 @@ export interface JobPost {
     description: string;
     vacancies: number;
     expireDate: Date;
-    types: string[];
+    type: string;
     langs: string[];
+}
+
+export interface JobDesc {
+    ID: number;
+    companyName: string;
+    title: string;
+    publishDate: string;
+    location: string;
+    experience_needed: number;
+    description: string;
+    skills: string[];
+    logo: string;
+    type: string;
+    vacancies: string;
+    salary: string;
 }

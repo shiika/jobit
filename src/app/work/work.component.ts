@@ -74,15 +74,18 @@ export class WorkComponent implements OnInit {
   sidenavLinks: {[key: string]: string}[] = [
     {
       icon: "home",
-      link: "Home"
+      link: "/home",
+      text: "Home"
     },
     {
-      icon: "chat",
-      link: "Messaging"
+      icon: "business center",
+      link: "/work/explore",
+      text: "Jobs"
     },
     {
       icon: "bookmark",
-      link: "Saved"
+      text: "Saved",
+      link: "/work/saved"
     },
   ];
 

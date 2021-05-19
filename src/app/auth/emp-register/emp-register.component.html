@@ -110,6 +110,21 @@
             </mat-form-field>
           </div>
 
+          <div class="col-12 d-flex flex-column">
+            <!-- <img [src]="seekerImg" alt="Profile Photo" class="mw-100"> -->
+            <mat-progress-bar mode="determinate" *ngIf="uploadPercent" [value]="uploadPercent | async"></mat-progress-bar>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="seekerImg" *ngIf="seekerImg">
+              <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+            </ngx-dropzone-image-preview>
+
+            <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'image/jpeg,image/jpg,image/png, image/svg+xml'">
+              <ngx-dropzone-label><mat-icon class="upload-icon" color="accent">upload</mat-icon><br> <p>Drop your photo here</p></ngx-dropzone-label>
+              <ngx-dropzone-preview *ngIf="seekerImg" [removable]="true" (removed)="onRemove()">
+                <ngx-dropzone-label>{{ seekerImg?.name }} ({{ seekerImg?.type }}) </ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+          </div>
+
           <div class="col-12">
             <button type="submit" class="mt-2" mat-raised-button color="primary" [disabled]="empForm.invalid">Save
               and Continue</button>

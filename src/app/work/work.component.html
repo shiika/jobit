@@ -36,12 +36,12 @@
     <mat-sidenav mode="over" #sidenav [(opened)]="isToggled" [@sidenavToggle]="isToggled ? 'open' : 'close'" (closedStart)="isToggled = false"
       (mouseenter)="onHover(isMobile)" (mouseleave)="onHover(isMobile)" [autoFocus]="false">
       <mat-selection-list [multiple]="false" class="pt-0">
-        <mat-list-option *ngFor="let link of sidenavLinks; let i = index" routerLinkActive="mat-list-single-selected-option" [selected]="i == 0">
+        <mat-list-option *ngFor="let link of sidenavLinks; let i = index" [routerLink]="[link.link]" routerLinkActive="mat-list-single-selected-option">
             <div class="d-flex flex-row align-items-center">
                 <button mat-icon-button [@iconToggle]="isToggled ? 'open' : 'close'">
                     <mat-icon routerLinkActive="mat-primary">{{link.icon}}</mat-icon>
                 </button>
-                <a class="d-inline-block ml-3" *ngIf="isToggled" @navlistToggle>{{link.link}}</a>
+                <a class="d-inline-block ml-3" *ngIf="isToggled" @navlistToggle>{{link.text}}</a>
             </div>
         </mat-list-option>
       </mat-selection-list>

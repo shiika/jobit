@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   @ViewChild("langName", { static: true }) langName: MatSelect;
   @ViewChild("langLevel", { static: true }) langLevel: MatSelect;
   isEditMode: boolean;
+  isUploaded: boolean = false;
   seekerImg: File;
   filePath: string = "images/profile";
   uploadPercent: Observable<number>;
@@ -268,6 +269,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // Drag and drop profile photo
   onSelect(event: any) {
+    this.isUploaded = false;
     this.seekerImg = event.addedFiles[0];
     const filePath = `images/${this.seekerImg.name}-${this.generalInfo.get("phone").value}`;
     const fileRef = this.storage.ref(filePath);
@@ -278,13 +280,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     // get notified when the download URL is available
     this.$taskSub = task.snapshotChanges().pipe(
-        finalize(() => {fileRef.getDownloadURL().pipe(take(1)).subscribe(link => {this.generalInfo.get("image_url").setValue(link); console.log(link)})})
+        finalize(() => {fileRef.getDownloadURL().pipe(take(1))
+          .subscribe(
+            link => {
+              this.generalInfo.get("image_url").setValue(link); 
+              this.isUploaded = true;
+            })})
      )
     .subscribe()
   }
 
   onRemove() {
     this.seekerImg = null;
+    this.isUploaded = false;
   }
 
   updateForm(form: {[key: string]: string}, action: string): void {

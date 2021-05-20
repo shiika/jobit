@@ -146,7 +146,7 @@
 
               <div class="col-12">
                 <button type="submit" class="mt-2" mat-raised-button color="primary" 
-                [disabled]="generalInfo.invalid"
+                [disabled]="generalInfo.invalid || !isUploaded"
                 >Save and Continue</button>
               </div>
             </form>

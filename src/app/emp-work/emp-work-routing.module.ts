@@ -8,12 +8,16 @@ import { SkillsResolverService } from '../shared/services/resolvers/skills-resol
 import { EmpWorkComponent } from './emp-work.component';
 import { EmployeesComponent } from "./employees/employees.component";
 import { JobPostComponent } from './job-post/job-post.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 const routes: Routes = [
     {
         path: "", component: EmpWorkComponent, canActivate: [EmployerGuard], children: [
           {
             path: "emps", component: EmployeesComponent
+          },
+          {
+            path: "jobs", component: JobsComponent
           },
           {
             path: "seeker/:id", 

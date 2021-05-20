@@ -26,13 +26,15 @@ export const API_URLS: any = {
 
     job: {
         getJobs: server + "/employer/jobs",
-        getSkills: server + "/employer/skills"
+        getSkills: server + "/employer/skills",
+        postJob: server + "/job/post",
+        apply: server + "/job/apply",
+        empJobs: server + "/job/jobs"
     },
 
     emp: {
         login: server + "/auth/login",
         register: server + "/auth/emp-register",
-        postJob: server + "/employer/post",
         employees: server + "/employer/employees"
     },
 

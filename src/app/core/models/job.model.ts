@@ -23,10 +23,10 @@ export interface JobDesc {
     companyName: string;
     title: string;
     publishDate: string;
-    location: string;
+    location?: string;
     experience_needed: number;
     description: string;
-    skills: string[];
+    skills?: string[];
     logo: string;
     type: string;
     vacancies: string;

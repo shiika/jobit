@@ -88,6 +88,11 @@ export class EmpWorkComponent implements OnInit {
       link: "/find/post"
     },
     {
+      icon: "description",
+      text: "Jobs",
+      link: "/find/jobs"
+    },
+    {
       icon: "bookmark",
       text: "Saved",
       link: "/find/saved"

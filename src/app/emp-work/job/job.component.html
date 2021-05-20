@@ -1,0 +1,18 @@
+<div class="job" [routerLink]="['/find/jobs', job.ID]">
+    <div class="job__header">
+        <img [src]="job.logo" [alt]="job.companyName" class="job__header__img">
+        <button mat-icon-button ><mat-icon color="primary">delete</mat-icon></button>
+    </div>
+
+    <div class="job__name">
+        <h4>{{job.title}}</h4>
+        <h4>{{job.type}}</h4>
+    </div>
+
+    <h2 class="job__title">{{job.experience_needed}} Years</h2>
+
+    <!-- <mat-chip-list aria-label="Fish selection" class="w-100">
+        <mat-chip>Python</mat-chip>
+        <mat-chip>Nodejs</mat-chip>
+      </mat-chip-list> -->
+</div>

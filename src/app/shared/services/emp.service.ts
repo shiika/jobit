@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, } from 'rxjs';
 import { take, catchError, tap, map } from 'rxjs/operators';
 import { API_URLS } from '../API_URLS';
-import { JobPost } from '../../core/models/job.model';
+import { Job, JobDesc, JobPost } from '../../core/models/job.model';
 import { handleError } from '../../core/utils/handleError.util';
 import { Seeker } from 'src/app/core/models/seeker.interface';
 import { Employee } from 'src/app/core/models/employee.model';
@@ -15,15 +15,27 @@ export class EmpService {
   constructor(private http: HttpClient) { }
 
   postJob(job: JobPost): Observable<string> {
-    return this.http.post(API_URLS["emp"].postJob, job, {
+    return this.http.post(API_URLS["job"].postJob, job, {
         headers: new HttpHeaders({
-            "x-access-token": localStorage.getItem("token")
+            "x-auth-token": localStorage.getItem("token")
         }),
         responseType: "text"
     }).pipe(
         take(1),
         catchError(handleError)
     )
+  }
+
+  getJobs(): Observable<JobDesc[]> {
+    return this.http.get<JobDesc[]>(API_URLS["job"].empJobs, {
+      headers: new HttpHeaders({
+        "x-auth-token": localStorage.getItem("token")
+      })
+    })
+    .pipe(
+      take(1),
+      catchError(handleError)
+      )
   }
 
   getEmployees(): Observable<Employee[]> {

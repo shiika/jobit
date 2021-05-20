@@ -41,7 +41,6 @@ export class JobRequirementsComponent implements OnInit {
     .subscribe(
       (skills: string[]) => {
         this.skills = skills;
-        console.table({skills: this.skills, job: this.job});
       }
     );
   }

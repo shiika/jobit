@@ -23,10 +23,12 @@ import { MatSliderModule } from "@angular/material/slider"
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EmpService } from "../shared/services/emp.service";
 import { MatMenuModule } from '@angular/material/menu';
+import { JobsComponent } from './jobs/jobs.component';
+import { JobComponent } from './job/job.component';
 
 
 @NgModule({
-  declarations: [EmpWorkComponent, EmployeesComponent, EmployeeComponent, JobPostComponent],
+  declarations: [EmpWorkComponent, EmployeesComponent, EmployeeComponent, JobPostComponent, JobsComponent, JobComponent],
   imports: [
     CommonModule,
     EmpWorkRoutingModule,

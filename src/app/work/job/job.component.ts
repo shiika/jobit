@@ -30,8 +30,12 @@ export class JobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.job.publishDate = moment(this.job.publishDate).fromNow();
+    // this.job.publishDate = moment(this.job.publishDate).fromNow();
 
+  }
+
+  get publishDate(): string {
+    return moment(this.job.publishDate).fromNow()
   }
 
   onCardChange(state: string) {

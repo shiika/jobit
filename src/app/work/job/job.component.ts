@@ -1,6 +1,7 @@
 import { style, trigger, state, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { Job, JobPost } from 'src/app/core/models/job.model';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-job',
@@ -29,6 +30,8 @@ export class JobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.job.publishDate = moment(this.job.publishDate).fromNow();
+
   }
 
   onCardChange(state: string) {

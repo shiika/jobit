@@ -124,7 +124,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.bachelor.nativeElement.click();
     this.isEditMode = !!this.route.snapshot.params["id"];
     if (this.isEditMode) {
-      this.$seeker = this.seekerService.getSeeker(this.authService.userId.toString())
+      this.$seeker = this.seekerService.getSeeker(null)
         .subscribe(
           (seeker: Seeker) => {
             this.generalInfo = this.fb.group({

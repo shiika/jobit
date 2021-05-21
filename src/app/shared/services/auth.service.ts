@@ -80,8 +80,8 @@ export class AuthService {
     autoLogin(): void {
         const token = localStorage.getItem("token");
         this.userType = localStorage.getItem("userType");
-        this.$user.next(this.userType)
         if (token) {
+            this.$user.next(this.userType)
             this.isLoggedIn = true;
             this.autoLogout();
         }

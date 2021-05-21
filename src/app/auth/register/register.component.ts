@@ -128,19 +128,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
         .subscribe(
           (seeker: Seeker) => {
             this.generalInfo = this.fb.group({
-              first_name: [seeker.first_name, [Validators.required, Validators.minLength(3)]],
-              last_name: [seeker.last_name, [Validators.required, Validators.minLength(3)]],
-              birth_date: [{value: null, disabled: true}, [Validators.required]],
-              gender: [{value: null, disabled: true}, [Validators.required]],
-              location: [seeker.location, [Validators.required]],
-              marital_status: [seeker.marital_status, [Validators.required]],
-              military_status: [seeker.military_status, [Validators.required]],
+              first_name: [seeker.first_name, [Validators.minLength(3)]],
+              last_name: [seeker.last_name, [Validators.minLength(3)]],
+              birth_date: [{value: null, disabled: true}, []],
+              gender: [{value: null, disabled: true}, []],
+              location: [seeker.location, []],
+              marital_status: [seeker.marital_status, []],
+              military_status: [seeker.military_status, []],
               image_url: [seeker.image_url],
-              phone: [seeker.phone_num, 
-                      [numberValidator, 
-                        Validators.minLength(11)], 
-                        new UniquePhoneValidator(this.dataService).validate.bind(this)
-                      ],
+              phone: [{value: null, disabled: true}],
               email: [
                 {value: null, disabled: true}],
               password: [{value: null, disabled: true},],
@@ -154,15 +150,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
               this.careerInterests = this.fb.group({
                 min_salary: [interests.interests.min_salary, salaryValidator.bind(this)],
     
-                status: [interests.interests.status, Validators.required],
+                status: [interests.interests.status],
                 careerLevel: [interests.interests.career_level],
             
                 jobTypes: this.fb.array(
                   [...interests.types.map((item: string) => this.fb.control(item))]
                   ),
             
-                expYears: [interests.interests.expYears, [Validators.min(0), Validators.max(15), Validators.required]],
-                educationLevel: [interests.interests.educationLevel, Validators.required],
+                expYears: [interests.interests.expYears, [Validators.min(0), Validators.max(15)]],
+                educationLevel: [interests.interests.educationLevel],
               });
               // this.selectLevel(interests.interests.career_level);
             }

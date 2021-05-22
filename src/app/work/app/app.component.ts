@@ -1,12 +1,12 @@
-import { style, trigger, state, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { Job, JobPost } from 'src/app/core/models/job.model';
-import * as moment from "moment";
+import * as moment from 'moment';
+import { Job, JobApp } from 'src/app/core/models/job.model';
 
 @Component({
-  selector: 'app-job',
-  templateUrl: './job.component.html',
-  styleUrls: ['./job.component.scss'],
+  selector: 'app-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
   animations: [
     trigger("cardHover", [
       state("in", style({
@@ -22,9 +22,8 @@ import * as moment from "moment";
     ])
   ]
 })
-export class JobComponent implements OnInit {
-  @Input("job") job: Job;
-  @Input("type") type: string;
+export class AppComponent implements OnInit {
+  @Input("app") app: JobApp;
   isSaved: boolean = false;
   cardState: string = "out";
 
@@ -36,7 +35,7 @@ export class JobComponent implements OnInit {
   }
 
   get publishDate(): string {
-    return moment(this.job.publishDate).fromNow()
+    return moment(this.app.app.publishDate).fromNow()
   }
 
   onCardChange(state: string) {

@@ -1,0 +1,15 @@
+<mat-card style="cursor: pointer;" [@cardHover]="cardState" (mouseenter)="onCardChange('in')" (mouseleave)="onCardChange('out')">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img [src]='app.logo' [alt]="app.logo + ' icon'" width="90">
+      </div>
+      <mat-card-subtitle class="mb-1">{{app.companyName}}</mat-card-subtitle>
+      <mat-card-title>{{app.app.title}}</mat-card-title>
+      <mat-card-subtitle>
+          {{publishDate}}
+      </mat-card-subtitle>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip color="accent">{{app.app.status}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-header>
+  </mat-card>

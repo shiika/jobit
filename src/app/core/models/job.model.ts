@@ -32,3 +32,15 @@ export interface JobDesc {
     vacancies: string;
     salary: string;
 }
+
+export interface JobApp {
+    app: {
+        ID: string;
+        title: string;
+        publishDate: string;
+        stateDate: string;
+        status: string;
+    },
+    companyName: string;
+    logo: string;
+}

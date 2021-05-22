@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { API_URLS } from "../API_URLS";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Job, JobDesc, JobPost } from "src/app/core/models/job.model";
+import { Job, JobApp, JobDesc, JobPost } from "src/app/core/models/job.model";
 import { catchError, map, take, tap } from "rxjs/operators";
 import { handleError } from "src/app/core/utils/handleError.util";
 
@@ -59,6 +59,33 @@ export class DataService {
                 console.log(jobs);
                 this.$jobs.next(jobs);
                 this.jobs = jobs;
+            })
+        )
+    }
+
+    getApps(): Observable<JobApp[]> {
+        return this.http.get<JobApp[]>(API_URLS.seeker.getApps, {
+            headers: new HttpHeaders({
+                "x-auth-token": localStorage.getItem("token")
+            })
+        })
+        .pipe(
+            take(1),
+            catchError(handleError),
+            map((apps: JobApp[]) => {
+                return apps.map((item: any) => {
+                    return {
+                        app: {
+                            ID: item.app.ID,
+                            title: item.app.title,
+                            publishDate: item.app.publish_date,
+                            stateDate: item.app.state_date,
+                            status: item.app.application_status
+                        },
+                        companyName: item.companyName,
+                        logo: item.logo
+                    }
+                })
             })
         )
     }

@@ -16,6 +16,7 @@ export const API_URLS: any = {
         langs: server + "/seeker/langs",
         edu: server + "/seeker/edu",
         exp: server + "/seeker/exp",
+        getApps: server + "/seeker/apps",
         getInterests: server + "/seeker/get-interests",
         update: {
             general: server + "/seeker/update",
@@ -29,7 +30,7 @@ export const API_URLS: any = {
         getSkills: server + "/employer/skills",
         postJob: server + "/job/post",
         apply: server + "/job/apply",
-        empJobs: server + "/job/jobs"
+        empJobs: server + "/job/jobs",
     },
 
     emp: {

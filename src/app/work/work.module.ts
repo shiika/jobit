@@ -27,10 +27,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { EducationComponent } from './education/education.component';
+import { AppComponent } from './app/app.component';
 
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent, AppComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

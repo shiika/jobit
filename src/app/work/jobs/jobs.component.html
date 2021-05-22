@@ -10,7 +10,7 @@
 
               <div *ngIf="tab == 'Applications'">
                 <app-app *ngFor="let app of $apps | async; let i = index" [app]="app"
-                  [routerLink]="['/work', tab.toLowerCase(), app.app.ID]" routerLinkActive="active"></app-app>
+                  routerLinkActive="active"></app-app>
               </div>
             </div>
           </mat-tab>

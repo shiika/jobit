@@ -5,7 +5,7 @@
             <div class="tab-container">
               <div *ngIf="tab == 'Explore'">
                 <app-job *ngFor="let job of  $jobs | async; let i = index" [job]="job"
-                  [routerLink]="['/work', tab.toLowerCase(), job.ID]" routerLinkActive="active"></app-job>
+                  [routerLink]="['/work', isMobile ? 'explore-mob' : 'explore', job.ID]" routerLinkActive="active"></app-job>
               </div>
 
               <div *ngIf="tab == 'Applications'">

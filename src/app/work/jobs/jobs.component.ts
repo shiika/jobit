@@ -1,3 +1,4 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import * as moment from "moment";
 import { Observable } from 'rxjs';
@@ -15,14 +16,20 @@ export class JobsComponent implements OnInit {
   tabs: string[] = ["Explore", "Applications"];
   $jobs: Observable<JobDesc[]>;
   $apps: Observable<JobApp[]>;
-  
+  isMobile: boolean = false;
 
   jobs: JobDesc[];
 
   applications: any[] = Array.from({length: 2}, (item, index) => index);
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private mediaMatcher: MediaMatcher) { }
 
   ngOnInit(): void {
+    let viewport = this.mediaMatcher.matchMedia("(max-width: 767.98px)");
+    this.isMobile = viewport.matches;
+    viewport.addEventListener("change", e => {
+      this.isMobile = e.matches;
+    });
+
     this.$jobs = this.data.$jobs;
     this.data.getJobs("all").subscribe(jobs => {
       console.log(jobs);

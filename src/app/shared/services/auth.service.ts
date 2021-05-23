@@ -70,7 +70,7 @@ export class AuthService {
                 this.$user.next(userType);
                 saveToken(credentials);
                 this.userId = credentials.userId;
-                this.isLoggedIn = true;
+                this.isLoggedIn = credentials.token ? true : false;
                 this.autoLogout();
                 this.redirectUrl = userType === "job_seeker" ? "/work/explore" : "/find/emps" 
             })

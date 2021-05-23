@@ -20,7 +20,7 @@
                   </button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-success text-white" [routerLink]="[isLoggedIn ? '/work/me' : '/auth/emp-register']">
+                <button type="button" class="btn btn-success text-white" [routerLink]="[isLoggedIn ? getLink() : '/auth/emp-register']">
                     {{isLoggedIn ? "View Profile" : "Employer?"}}
                 </button>
               </li>

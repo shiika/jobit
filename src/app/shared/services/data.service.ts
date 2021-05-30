@@ -4,13 +4,14 @@ import { environment } from "../../../environments/environment";
 import { API_URLS } from "../API_URLS";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Job, JobApp, JobDesc, JobPost } from "src/app/core/models/job.model";
-import { catchError, map, take, tap } from "rxjs/operators";
+import { catchError, concatMap, map, take, tap } from "rxjs/operators";
 import { handleError } from "src/app/core/utils/handleError.util";
 
 @Injectable({ providedIn: "root" })
 
 export class DataService {
     $jobs: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
+    $saved: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
     jobs: JobDesc[] = [];
     private _jobId: string;
     constructor(private http: HttpClient) {}
@@ -56,7 +57,6 @@ export class DataService {
                 return {ID, location, skills, companyName, description, experience_needed, logo, publishDate, salary, title, type, vacancies}
             })),
             tap((jobs: JobDesc[]) => {
-                console.log(jobs);
                 this.$jobs.next(jobs);
                 this.jobs = jobs;
             })
@@ -106,6 +106,20 @@ export class DataService {
     getJob(id: number): JobDesc {
         this._jobId = id.toString();
         return this.jobs.find((job: JobDesc) => job.ID === id)
+    }
+
+    getSaved(): Observable<JobDesc[]> {
+        return this.http.get<JobDesc[]>(API_URLS["job"].saved, {
+            headers: new HttpHeaders({
+                "x-auth-token": localStorage.getItem("token")
+            })
+        }).pipe(
+            take(1),
+            catchError(handleError),
+            tap(jobs => {
+                this.$saved.next(jobs);
+            })
+        )
     }
 
     get jobId(): string {

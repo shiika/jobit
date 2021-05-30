@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-12 col-lg-5">
+        <mat-tab-group mat-stretch-tabs dynamicHeight>
+          <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab">
+            <div class="tab-container">
+              <div>
+                <app-job *ngFor="let job of  $saved | async; let i = index" [job]="job" [saved]="true"
+                  [routerLink]="['/work', isMobile ? 'explore-mob' : 'explore', job.ID]" routerLinkActive="active"></app-job>
+              </div>
+
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+</div>

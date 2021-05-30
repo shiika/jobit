@@ -31,6 +31,7 @@ export interface JobDesc {
     type: string;
     vacancies: string;
     salary: string;
+    isSaved?: boolean
 }
 
 export interface JobApp {

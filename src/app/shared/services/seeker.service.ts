@@ -21,7 +21,7 @@ export class SeekerService {
   public experiences: Experience[] = [];
   public educations: Education[] = [];
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   getSeeker(id: string): Observable<Seeker> {
     let headers: HttpHeaders = this.customHeaders;
@@ -39,6 +39,34 @@ export class SeekerService {
           "x-auth-token": localStorage.getItem("token")
       })
   }).pipe(take(1))
+  }
+
+  saveJob(jobId: number): Observable<any> {
+    return this.http.get(API_URLS["job"].save, {
+      headers: new HttpHeaders({
+        "x-auth-token": localStorage.getItem("token"),
+        "job-id": jobId.toString()
+      }),
+      responseType: "text"
+    })
+    .pipe(
+      take(1),
+      catchError(handleError)
+      )
+  }
+
+  unSaveJob(jobId: number): Observable<any> {
+    return this.http.delete(API_URLS["job"].unsave, {
+      headers: new HttpHeaders({
+        "x-auth-token": localStorage.getItem("token"),
+        "job-id": jobId.toString()
+      }),
+      responseType: "text"
+    })
+    .pipe(
+      take(1),
+      catchError(handleError)
+      )
   }
 
   getSkills(id: string): Observable<string[]> {

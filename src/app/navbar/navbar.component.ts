@@ -114,7 +114,7 @@ export class NavbarComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: "900px"
     });
-    this.isCollapsed = false;
+    this.isCollapsed = window.innerWidth >= 992 ? true : false;
 
 
     dialogRef.afterClosed().subscribe(_ => {

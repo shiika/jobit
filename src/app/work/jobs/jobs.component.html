@@ -4,7 +4,7 @@
           <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab">
             <div class="tab-container">
               <div *ngIf="tab == 'Explore'">
-                <app-job *ngFor="let job of  $jobs | async; let i = index" [job]="job"
+                <app-job *ngFor="let job of  $jobs | async; let i = index" [job]="job" [saved]="checkSaved(job.ID)"
                   [routerLink]="['/work', isMobile ? 'explore-mob' : 'explore', job.ID]" routerLinkActive="active"></app-job>
               </div>
 

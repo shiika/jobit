@@ -30,6 +30,9 @@ export const API_URLS: any = {
         getSkills: server + "/employer/skills",
         postJob: server + "/job/post",
         apply: server + "/job/apply",
+        save: server + "/job/save",
+        unsave: server + "/job/unsave",
+        saved: server + "/job/saved",
         empJobs: server + "/job/jobs",
     },
 

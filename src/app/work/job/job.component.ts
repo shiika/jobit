@@ -1,7 +1,8 @@
 import { style, trigger, state, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { Job, JobPost } from 'src/app/core/models/job.model';
+import { Job, JobDesc, JobPost } from 'src/app/core/models/job.model';
 import * as moment from "moment";
+import { SeekerService } from 'src/app/shared/services/seeker.service';
 
 @Component({
   selector: 'app-job',
@@ -23,12 +24,12 @@ import * as moment from "moment";
   ]
 })
 export class JobComponent implements OnInit {
-  @Input("job") job: Job;
+  @Input("job") job: JobDesc;
   @Input("type") type: string;
-  isSaved: boolean = false;
+  @Input("saved") isSaved: boolean = false;
   cardState: string = "out";
 
-  constructor() { }
+  constructor(private seeker: SeekerService) { }
 
   ngOnInit(): void {
     // this.job.publishDate = moment(this.job.publishDate).fromNow();
@@ -41,6 +42,28 @@ export class JobComponent implements OnInit {
 
   onCardChange(state: string) {
     this.cardState = state;
+  }
+
+  saveJob(event: Event, id: number): void {
+    event.stopPropagation();
+    this.seeker.saveJob(id)
+      .subscribe(
+        (res: string) => {
+          this.isSaved = true;
+        }
+      )
+  }
+
+  unSave(e: Event, id: number): void {
+    e.stopPropagation();
+    this.seeker.unSaveJob(id)
+      .subscribe(
+        (res: string) => {
+          this.isSaved = false;
+          console.log(res);
+
+        }
+      )
   }
 
 }

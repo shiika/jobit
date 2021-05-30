@@ -8,6 +8,6 @@
       <mat-card-subtitle>
           {{publishDate}}
       </mat-card-subtitle>
-      <button mat-icon-button (click)="isSaved = !isSaved; $event.stopPropagation()"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button>
+      <button mat-icon-button (click)="isSaved === false ? saveJob($event, job.ID) : unSave($event, job.ID)"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button>
     </mat-card-header>
   </mat-card>

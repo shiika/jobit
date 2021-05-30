@@ -28,10 +28,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { EducationComponent } from './education/education.component';
 import { AppComponent } from './app/app.component';
+import { SavedComponent } from './saved/saved.component';
 
 
 @NgModule({
-  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent, AppComponent ],
+  declarations: [WorkComponent, JobComponent, JobDescComponent, QuestionsComponent, JobRequirementsComponent, JobsComponent, ExperienceComponent, EducationComponent, AppComponent, SavedComponent ],
   imports: [
     CommonModule,
     WorkRoutingModule,

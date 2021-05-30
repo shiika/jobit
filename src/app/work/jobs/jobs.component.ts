@@ -17,8 +17,7 @@ export class JobsComponent implements OnInit {
   $jobs: Observable<JobDesc[]>;
   $apps: Observable<JobApp[]>;
   isMobile: boolean = false;
-
-  jobs: JobDesc[];
+  saved: JobDesc[] = [];
 
   applications: any[] = Array.from({length: 2}, (item, index) => index);
   constructor(private data: DataService, private mediaMatcher: MediaMatcher) { }
@@ -32,9 +31,13 @@ export class JobsComponent implements OnInit {
 
     this.$jobs = this.data.$jobs;
     this.data.getJobs("all").subscribe(jobs => {
-      console.log(jobs);
     });
-    this.data.getApps().subscribe(apps => console.log(apps));
+    this.data.getApps().subscribe(apps => {});
+    this.data.getSaved().subscribe(
+      (saved: JobDesc[]) => {
+        this.saved = saved;
+      }
+    )
   }
 
   tabChanged(event: any): void {
@@ -47,6 +50,12 @@ export class JobsComponent implements OnInit {
     } else {
       return this.$apps
     }
+  }
+
+  checkSaved(id: number): boolean {
+    return this.saved.findIndex(job => {
+      return id == job.ID
+    }) != -1
   }
 
 }

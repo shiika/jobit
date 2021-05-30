@@ -10,6 +10,7 @@ import { ProfileResolverService } from "../shared/services/resolvers/profile.res
 import { SkillsResolverService } from "../shared/services/resolvers/skills-resolver.service";
 import { LangsResolverService } from "../shared/services/resolvers/langs-resolver.service";
 import { SeekerGuard } from '../core/guards/seeker.guard';
+import { SavedComponent } from './saved/saved.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,9 @@ const routes: Routes = [
           skills: SkillsResolverService,
           langs: LangsResolverService,
         }
+      },
+      {
+        path: "saved", component: SavedComponent
       },
       {
         path: "explore", component: JobsComponent, children: [

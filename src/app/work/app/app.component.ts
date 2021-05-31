@@ -2,6 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Job, JobApp } from 'src/app/core/models/job.model';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-app',
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
   isSaved: boolean = false;
   cardState: string = "out";
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
     // this.job.publishDate = moment(this.job.publishDate).fromNow();
@@ -40,6 +41,10 @@ export class AppComponent implements OnInit {
 
   onCardChange(state: string) {
     this.cardState = state;
+  }
+
+  removeApp(appId: number): void {
+    this.data.removeApp(appId).subscribe(res => console.log(res));
   }
 
 }

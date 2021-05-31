@@ -17,6 +17,7 @@ export const API_URLS: any = {
         edu: server + "/seeker/edu",
         exp: server + "/seeker/exp",
         getApps: server + "/seeker/apps",
+        removeApp: server + "/seeker/remove-app",
         getInterests: server + "/seeker/get-interests",
         update: {
             general: server + "/seeker/update",

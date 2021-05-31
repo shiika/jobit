@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { API_URLS } from "../API_URLS";
 import { BehaviorSubject, Observable } from "rxjs";
@@ -11,8 +11,10 @@ import { handleError } from "src/app/core/utils/handleError.util";
 
 export class DataService {
     $jobs: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
+    $apps: BehaviorSubject<JobApp[]> = new BehaviorSubject<JobApp[]>([]);
     $saved: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
     jobs: JobDesc[] = [];
+    apps: JobApp[] = [];
     private _jobId: string;
     constructor(private http: HttpClient) {}
 
@@ -37,6 +39,10 @@ export class DataService {
             catchError(handleError),
             tap(_ => {
                 this.jobs = this.jobs.filter(job => job.ID !== +jobId);
+                this.getApps().subscribe(apps => {
+                    this.apps = apps;
+                    this.$apps.next(this.apps)
+                })
                 this.$jobs.next(this.jobs);
             })
             )
@@ -86,9 +92,38 @@ export class DataService {
                         logo: item.logo
                     }
                 })
+            }),
+            tap((apps: JobApp[]) => {
+                const newJobs = this.jobs.filter(job => {
+                    return apps.findIndex(app => { return app.app.ID == job.ID }) == -1
+                });
+                this.$jobs.next(newJobs);
+                this.jobs = newJobs;
+                this.$apps.next(apps);
+                this.apps = apps;
             })
         )
     }
+
+    removeApp(id: number): Observable<Object> {
+        return this.http.delete(API_URLS["seeker"].removeApp, {
+          headers: new HttpHeaders({
+              "x-auth-token": localStorage.getItem("token"),
+              "job-id": id.toString()
+          }),
+          responseType: "json"
+          })
+          .pipe(
+            take(1),
+            tap(_ => {
+              const newApps = this.apps.filter(app => {
+                  return app.app.ID != id
+              });
+              this.apps = newApps;
+              this.$apps.next(this.apps);
+              console.log(newApps)
+            }))
+      }
 
     getSkills(id: string): Observable<string[]> {
         return this.http.get<Job[]>(API_URLS.job.getSkills, {

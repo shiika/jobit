@@ -11,5 +11,6 @@
       <mat-chip-list aria-label="Fish selection">
         <mat-chip color="accent">{{app.app.status}}</mat-chip>
       </mat-chip-list>
+      <button mat-icon-button (click)="removeApp(app.app.ID)"><mat-icon color="primary">delete</mat-icon></button>
     </mat-card-header>
   </mat-card>

@@ -36,7 +36,7 @@ export interface JobDesc {
 
 export interface JobApp {
     app: {
-        ID: string;
+        ID: number;
         title: string;
         publishDate: string;
         stateDate: string;

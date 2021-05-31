@@ -7,10 +7,13 @@ import { Job, JobDesc, JobPost } from '../../core/models/job.model';
 import { handleError } from '../../core/utils/handleError.util';
 import { Seeker } from 'src/app/core/models/seeker.interface';
 import { Employee } from 'src/app/core/models/employee.model';
+import { DataService } from './data.service';
 
 @Injectable()
 export class EmpService {
     $employees: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
+    $empJobs: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
+    empJobs: JobDesc[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +29,27 @@ export class EmpService {
     )
   }
 
+  removeJob(id: number): Observable<string> {
+    return this.http.delete(API_URLS.emp.removeJob, {
+        headers: new HttpHeaders({
+            "x-auth-token": localStorage.getItem("token"),
+            "job-id": id.toString()
+        }),
+        responseType: "text"
+    }).pipe(
+        take(1),
+        catchError(handleError),
+        tap(_ => {
+            const newJobs = this.empJobs.filter(job => {
+                return job.ID != id
+            });
+            this.empJobs = newJobs;
+            this.$empJobs.next(this.empJobs);
+            
+        })
+    )
+}
+
   getJobs(): Observable<JobDesc[]> {
     return this.http.get<JobDesc[]>(API_URLS["job"].empJobs, {
       headers: new HttpHeaders({
@@ -34,7 +58,11 @@ export class EmpService {
     })
     .pipe(
       take(1),
-      catchError(handleError)
+      catchError(handleError),
+      tap(jobs => {
+        this.empJobs = jobs;
+        this.$empJobs.next(jobs);
+      })
       )
   }
 

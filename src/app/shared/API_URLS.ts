@@ -40,7 +40,8 @@ export const API_URLS: any = {
     emp: {
         login: server + "/auth/login",
         register: server + "/auth/emp-register",
-        employees: server + "/employer/employees"
+        employees: server + "/employer/employees",
+        removeJob: server + "/employer/remove-job"
     },
 
     validators: {

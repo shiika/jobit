@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { Job, JobApp, JobDesc, JobPost } from "src/app/core/models/job.model";
 import { catchError, concatMap, map, take, tap } from "rxjs/operators";
 import { handleError } from "src/app/core/utils/handleError.util";
+import { EmpService } from "./emp.service";
 
 @Injectable({ providedIn: "root" })
 
@@ -16,7 +17,7 @@ export class DataService {
     jobs: JobDesc[] = [];
     apps: JobApp[] = [];
     private _jobId: string;
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private emp: EmpService) {}
 
     checkEmail(email: string) {
         return this.http.post<{email: String}>(`${API_URLS.validators.email}`, {email})

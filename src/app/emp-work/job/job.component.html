@@ -1,7 +1,7 @@
-<div class="job" [routerLink]="['/find/jobs', job.ID]">
+<div class="job">
     <div class="job__header">
         <img [src]="job.logo" [alt]="job.companyName" class="job__header__img">
-        <button mat-icon-button ><mat-icon color="primary">delete</mat-icon></button>
+        <button mat-icon-button (click)="removeJob(job.ID)"><mat-icon color="primary">delete</mat-icon></button>
     </div>
 
     <div class="job__name">

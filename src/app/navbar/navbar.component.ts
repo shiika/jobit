@@ -131,7 +131,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleNavbar(e: any) {
-    this.isCollapsed = e.target.className.includes("navbar-collapse") ? false : true;
+    this.isCollapsed = (e.target.className.includes("navbar-collapse") && window.innerWidth < 992) ? false : true;
   }
 
   logout(): void {

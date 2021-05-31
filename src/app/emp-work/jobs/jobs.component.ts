@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { JobDesc } from 'src/app/core/models/job.model';
 import { EmpService } from 'src/app/shared/services/emp.service';
 
@@ -9,18 +10,14 @@ import { EmpService } from 'src/app/shared/services/emp.service';
 })
 export class JobsComponent implements OnInit {
   jobs: JobDesc[] = [];
-
+  $empJobs: Observable<JobDesc[]>
 
   constructor(private employer: EmpService) { }
 
   ngOnInit(): void {
+    this.$empJobs = this.employer.$empJobs;
     this.employer.getJobs()
-      .subscribe(
-        (jobs: JobDesc[]) => {
-          console.log(jobs);
-          this.jobs = jobs;
-        }
-      )
+      .subscribe(jobs => console.log(jobs));
   }
 
 }

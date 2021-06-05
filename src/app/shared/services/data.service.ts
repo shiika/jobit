@@ -17,7 +17,7 @@ export class DataService {
     jobs: JobDesc[] = [];
     apps: JobApp[] = [];
     private _jobId: string;
-    constructor(private http: HttpClient, private emp: EmpService) {}
+    constructor(private http: HttpClient) {}
 
     checkEmail(email: string) {
         return this.http.post<{email: String}>(`${API_URLS.validators.email}`, {email})

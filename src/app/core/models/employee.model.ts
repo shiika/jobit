@@ -5,4 +5,5 @@ export interface Employee {
     title: string;
     salary: string;
     img: string;
+    isSaved?: boolean
 }

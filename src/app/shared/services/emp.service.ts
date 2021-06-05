@@ -13,7 +13,10 @@ import { DataService } from './data.service';
 export class EmpService {
     $employees: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
     $empJobs: BehaviorSubject<JobDesc[]> = new BehaviorSubject<JobDesc[]>([]);
+    $savedSeekers: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
+    emps: Employee[] = [];
     empJobs: JobDesc[] = [];
+    savedSeekers: Employee[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +29,77 @@ export class EmpService {
     }).pipe(
         take(1),
         catchError(handleError)
+    )
+  }
+
+  saveSeeker(id: number): Observable<string> {
+    return this.http.get(API_URLS["emp"].saveSeeker, {
+        headers: new HttpHeaders({
+            "x-auth-token": localStorage.getItem("token"),
+            "seeker-id": id.toString()
+        }),
+        responseType: "text"
+    }).pipe(
+        take(1),
+        catchError(handleError)
+    )
+  }
+
+  getSavedSeekers(): Observable<Employee[]> {
+    return this.http.get(API_URLS["emp"].getSeekers, {
+      headers: new HttpHeaders({
+          "x-auth-token": localStorage.getItem("token"),
+      }),
+    }).pipe(
+        take(1),
+        catchError(handleError),
+        tap((emps: Employee[]) => {
+          this.savedSeekers = emps.map((emp: any) => {
+            return {
+              ID: emp.ID,
+              firstName: emp.first_name,
+              lastName: emp.last_name,
+              salary: emp.min_salary,
+              img: emp.image_url,
+              title: emp.role_name, 
+              isSaved: this.emps.some(value => value.ID == emp.ID)
+            }
+          });
+          this.$savedSeekers.next(this.savedSeekers);
+          this.emps = this.emps.map(emp => {
+            return {
+              ...emp,
+              isSaved: this.savedSeekers.some(value => value.ID == emp.ID)}
+          })
+          this.$employees.next(this.emps);
+          // this.emps = newEmps;
+        })
+    )
+  }
+
+  deleteSeeker(id: number): Observable<string> {
+    return this.http.delete(API_URLS["emp"].removeSeeker, {
+      headers: new HttpHeaders({
+          "x-auth-token": localStorage.getItem("token"),
+          "seeker-id": id.toString()
+      }),
+      responseType: "text"
+    }).pipe(
+        take(1),
+        catchError(handleError),
+        tap(_ => {
+          const newSaved = this.savedSeekers.filter(emp => {
+            return emp.ID != id
+        });
+        this.savedSeekers = newSaved;
+        this.$savedSeekers.next(this.savedSeekers);
+        this.emps = this.emps.map(emp => {
+          return {
+            ...emp,
+            isSaved: this.savedSeekers.some(value => value.ID == emp.ID)}
+        })
+        this.$employees.next(this.emps);
+        })
     )
   }
 
@@ -75,8 +149,8 @@ export class EmpService {
     .pipe(
       take(1),
       catchError(handleError),
-      map((emps: Employee[]) => {
-        return emps.map((emp: any) => {
+      tap((emps: Employee[]) => {
+        this.emps = emps.map((emp: any) => {
           return {
             ID: emp.ID,
             firstName: emp.first_name,
@@ -85,7 +159,8 @@ export class EmpService {
             img: emp.image_url,
             title: emp.role_name
           }
-        })
+        });
+        this.$employees.next(this.emps);
       }))
   }
 }

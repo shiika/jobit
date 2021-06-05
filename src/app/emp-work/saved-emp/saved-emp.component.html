@@ -1,7 +1,7 @@
 <div class="employee" [routerLink]="['/find/seeker', employee.ID]">
     <div class="employee__header">
         <img [src]="employee.img" [alt]="employee.firstName" class="employee__header__img">
-        <button mat-icon-button (click)="isSaved ? unSaveSeeker(employee.ID, $event) : saveSeeker(employee.ID, $event)"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button>
+        <!-- <button mat-icon-button (click)="saveSeeker(employee.ID, $event)"><mat-icon color="primary">{{isSaved ? 'bookmark' : 'bookmark_border'}}</mat-icon></button> -->
     </div>
 
     <div class="employee__name">

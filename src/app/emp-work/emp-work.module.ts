@@ -25,10 +25,12 @@ import { EmpService } from "../shared/services/emp.service";
 import { MatMenuModule } from '@angular/material/menu';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './job/job.component';
+import { SavedComponent } from './saved/saved.component';
+import { SavedEmpComponent } from './saved-emp/saved-emp.component';
 
 
 @NgModule({
-  declarations: [EmpWorkComponent, EmployeesComponent, EmployeeComponent, JobPostComponent, JobsComponent, JobComponent],
+  declarations: [EmpWorkComponent, EmployeesComponent, EmployeeComponent, JobPostComponent, JobsComponent, JobComponent, SavedComponent, SavedEmpComponent],
   imports: [
     CommonModule,
     EmpWorkRoutingModule,

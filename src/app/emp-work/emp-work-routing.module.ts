@@ -5,6 +5,7 @@ import { JobSeekerComponent } from '../job-seeker/job-seeker.component';
 import { LangsResolverService } from '../shared/services/resolvers/langs-resolver.service';
 import { ProfileResolverService } from '../shared/services/resolvers/profile.resolver.service';
 import { SkillsResolverService } from '../shared/services/resolvers/skills-resolver.service';
+import { SavedComponent } from './saved/saved.component';
 import { EmpWorkComponent } from './emp-work.component';
 import { EmployeesComponent } from "./employees/employees.component";
 import { JobPostComponent } from './job-post/job-post.component';
@@ -13,6 +14,9 @@ import { JobsComponent } from './jobs/jobs.component';
 const routes: Routes = [
     {
         path: "", component: EmpWorkComponent, canActivate: [EmployerGuard], children: [
+          {
+            path: "saved", component: SavedComponent
+          },
           {
             path: "emps", component: EmployeesComponent
           },

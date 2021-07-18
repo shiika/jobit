@@ -18,6 +18,9 @@
     "emitDecoratorMetadata": true, 
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "@env/*": ["src/environments/*"]
+    },
     "target": "es2015",
     "module": "es2020",
     "lib": [

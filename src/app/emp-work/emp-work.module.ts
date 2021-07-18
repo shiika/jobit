@@ -13,7 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { JobPostComponent } from './job-post/job-post.component';
@@ -22,23 +21,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from "@angular/material/slider"
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EmpService } from "../shared/services/emp.service";
-import { MatMenuModule } from '@angular/material/menu';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobComponent } from './job/job.component';
 import { SavedComponent } from './saved/saved.component';
 import { SavedEmpComponent } from './saved-emp/saved-emp.component';
-
-
+import { SharedModule } from "../shared/shared.module";
 @NgModule({
   declarations: [EmpWorkComponent, EmployeesComponent, EmployeeComponent, JobPostComponent, JobsComponent, JobComponent, SavedComponent, SavedEmpComponent],
   imports: [
     CommonModule,
+    SharedModule,
     EmpWorkRoutingModule,
     MatTabsModule,
     MatSidenavModule,
     MatCheckboxModule,
     MatListModule,
-    MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     LayoutModule,
@@ -50,8 +47,7 @@ import { SavedEmpComponent } from './saved-emp/saved-emp.component';
     ReactiveFormsModule,
     CKEditorModule,
     FormsModule,
-    MatSliderModule,
-    MatMenuModule
+    MatSliderModule
   ],
   exports: [CKEditorModule],
   providers: [EmpService]

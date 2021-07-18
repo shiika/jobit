@@ -115,6 +115,10 @@ export class EmpWorkComponent implements OnInit {
     }
   }
 
+  toggleNavbar(state: boolean): void {
+    this.isToggled = state;
+  }
+
   logout(): void {
     this.auth.logout();
   }

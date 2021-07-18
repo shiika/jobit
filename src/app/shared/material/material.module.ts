@@ -13,6 +13,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   exports: [
@@ -22,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatNativeDateModule,
     MatStepperModule,
     MatButtonModule,
+    MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
@@ -29,7 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressSpinnerModule,
     MatChipsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

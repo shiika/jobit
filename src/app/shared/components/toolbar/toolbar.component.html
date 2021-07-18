@@ -1,0 +1,39 @@
+<mat-toolbar class="work__toolbar">
+    <button mat-icon-button [@menuToggle]="isToggled ? 'open' : 'close'" (click)="toggleNavbar()" *ngIf="isMobile">
+      <mat-icon>{{isToggled ? 'close' : 'menu'}}</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <g id="Group_2415" data-name="Group 2415" transform="translate(3.429 3)">
+          <circle id="Ellipse_2" data-name="Ellipse 2" cx="16" cy="16" r="16" transform="translate(-3.429 -3)"
+            fill="#0351ff"></circle>
+          <path id="Path_1479" data-name="Path 1479"
+            d="M930.98-550.18a12.887,12.887,0,0,1,12.895,13.014A12.9,12.9,0,0,1,930.7-524.374a12.894,12.894,0,0,1-12.625-13.269A12.9,12.9,0,0,1,930.98-550.18Zm12.025,12.792A12.047,12.047,0,0,0,930.381-549.3a12.054,12.054,0,0,0-11.43,12.69,12.042,12.042,0,0,0,12.605,11.354A12.025,12.025,0,0,0,943.005-537.388Z"
+            transform="translate(-918.068 550.18)" fill="#0351ff" stroke="#fff" stroke-width="1"></path>
+          <path id="Path_1481" data-name="Path 1481"
+            d="M1200.886-436.28h2.932a.462.462,0,0,1,.443.729c-.445.863-.894,1.723-1.335,2.588a.472.472,0,0,0-.047.276q.708,4.054,1.426,8.107c.124.7.258,1.408.373,2.114a1.59,1.59,0,0,1-.37,1.306q-1.089,1.329-2.181,2.656a1.57,1.57,0,0,1-2.508,0c-.724-.873-1.437-1.756-2.163-2.628a1.842,1.842,0,0,1-.346-1.621c.433-2.384.847-4.772,1.267-7.159.164-.929.33-1.858.489-2.788a.417.417,0,0,0-.036-.243c-.444-.869-.879-1.744-1.349-2.6a.486.486,0,0,1,.456-.742C1198.92-436.266,1199.9-436.28,1200.886-436.28Zm-1.132,3.845c-.06.329-.118.643-.173.958q-.81,4.572-1.62,9.145a.639.639,0,0,0,.128.536q1.13,1.39,2.269,2.773a.661.661,0,0,0,1.038-.005c.746-.9,1.485-1.815,2.228-2.722a.721.721,0,0,0,.158-.609q-.3-1.681-.6-3.362-.483-2.723-.965-5.446c-.075-.421-.15-.842-.225-1.267Zm-1.126-2.925a.64.64,0,0,0,.029.085c.316.611.629,1.223.953,1.83a.235.235,0,0,0,.178.088c.721.006,1.443,0,2.164.006a.2.2,0,0,0,.214-.127c.294-.58.6-1.155.895-1.732.024-.046.042-.095.067-.151Z"
+            transform="translate(-1187.969 439.998)" fill="#0351ff" stroke="#fff" stroke-width="1"></path>
+        </g>
+      </svg>
+    </button>
+    <span class="work__container__toolbar__app ml-2">Jobit</span>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><mat-icon>search</mat-icon></div>
+      </div>
+      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Search....">
+    </div>
+    <button mat-icon-button class="work__container__toolbar__btn" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
+      <div class="work__container__toolbar__profile"></div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/find/emps">
+        <mat-icon>person</mat-icon>
+        <span>View Profile</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>

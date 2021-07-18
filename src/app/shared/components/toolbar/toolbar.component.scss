@@ -1,0 +1,45 @@
+.work {
+  padding: 1rem;
+
+
+  &__container {
+
+    &__toolbar {
+
+      &__btn {
+        background: url("../../../../assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash\ \(1\).jpg") no-repeat center center scroll;
+        background-size: cover;
+      }
+    }
+  }
+
+  &__toolbar {
+    .input-group {
+      width: auto;
+      margin: 0 auto;
+
+      input.form-control {
+        border-left: none;
+        border-radius: 10px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &:focus {
+          color: #495057;
+          background-color: #fff;
+          border-color: #ced4da;
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+
+      .input-group-text {
+        background-color: white;
+        border-radius: 10px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+}

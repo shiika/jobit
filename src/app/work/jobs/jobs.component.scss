@@ -2,6 +2,7 @@ mat-tab-group {
 
     .tab-container {
         height: 75vh;
+        overflow-y: auto;
     }
 }
 

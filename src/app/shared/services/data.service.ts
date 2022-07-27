@@ -158,6 +158,14 @@ export class DataService {
         )
     }
 
+    getLocations(): Observable<{location: string, ID: number}[]> {
+        return this.http.get<{location: string, ID: number}[]>(API_URLS["emp"].locations)
+            .pipe(
+                take(1),
+                catchError(handleError),
+            )
+    }
+
     get jobId(): string {
         return this._jobId
     }

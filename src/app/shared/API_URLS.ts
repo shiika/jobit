@@ -44,7 +44,8 @@ export const API_URLS: any = {
         removeJob: server + "/employer/remove-job",
         saveSeeker: server + "/employer/save",
         getSeekers: server + "/employer/saved",
-        removeSeeker: server + "/employer/remove"
+        removeSeeker: server + "/employer/remove",
+        locations: server + "/auth/company-locations"
     },
 
     validators: {

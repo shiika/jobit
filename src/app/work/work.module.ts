@@ -29,6 +29,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { EducationComponent } from './education/education.component';
 import { AppComponent } from './app/app.component';
 import { SavedComponent } from './saved/saved.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { SavedComponent } from './saved/saved.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMenuModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    SharedModule
   ],
 
   exports: [

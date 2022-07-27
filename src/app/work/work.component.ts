@@ -11,7 +11,7 @@ import { AuthService } from '../shared/services/auth.service';
   animations: [
     trigger("sidenavToggle", [
       state("open", style({
-        width: "200px"
+        width: "270px"
       })),
       transition("* <=> open", [
         group([
@@ -86,7 +86,7 @@ export class WorkComponent implements OnInit {
       icon: "bookmark",
       text: "Saved",
       link: "/work/saved"
-    },
+    }
   ];
 
   constructor(private mediaMatcher: MediaMatcher, private auth: AuthService) {}
@@ -107,6 +107,10 @@ export class WorkComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
+  }
+
+  toggleNavbar(state: boolean): void {
+    this.isToggled = state;
   }
 
 }

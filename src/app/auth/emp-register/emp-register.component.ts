@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./emp-register.component.scss']
 })
 export class EmpRegisterComponent implements OnInit {
-  locations: string[] = ["Cairo", "Giza", "Mansoura", "Alex"];
+  locations: {location: string, ID: number}[] = [];
   uploadPercent: Observable<number>;
   seekerImg: File;
   $taskSub: Subscription;
@@ -63,6 +63,11 @@ export class EmpRegisterComponent implements OnInit {
     private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
+    this.dataService.getLocations().subscribe(
+      locations => {
+        this.locations = locations;
+      }
+    )
   }
 
   get companyForm(): FormGroup {

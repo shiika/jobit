@@ -2,7 +2,7 @@
     <button mat-icon-button [@menuToggle]="isToggled ? 'open' : 'close'" (click)="toggleNavbar()" *ngIf="isMobile">
       <mat-icon>{{isToggled ? 'close' : 'menu'}}</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button routerLink="/">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <g id="Group_2415" data-name="Group 2415" transform="translate(3.429 3)">
           <circle id="Ellipse_2" data-name="Ellipse 2" cx="16" cy="16" r="16" transform="translate(-3.429 -3)"
@@ -16,7 +16,7 @@
         </g>
       </svg>
     </button>
-    <span class="work__container__toolbar__app ml-2">Jobit</span>
+    <span class="work__container__toolbar__app ml-2" routerLink="/">Jobit</span>
     <div class="input-group">
       <div class="input-group-prepend">
         <div class="input-group-text"><mat-icon>search</mat-icon></div>

@@ -3,7 +3,6 @@
 @import "~bootstrap/scss/variables";
 
 .home {
-
   &__heading {
     margin-bottom: 3rem;
     height: 100vh;
@@ -17,7 +16,7 @@
       .img-container {
         position: absolute;
         top: -4.7rem;
-        width: 85%;
+        width: 70%;
         overflow: hidden;
 
         &:nth-child(1) {
@@ -48,14 +47,13 @@
     &__desc {
       overflow: hidden;
 
-      .input-group>.form-control {
+      .input-group > .form-control {
         flex: 5 1 auto;
         height: calc(2em + 1rem + 2px);
         font-size: 1rem;
       }
 
       .input-group {
-
         &-append {
           flex: 0 1 auto;
         }
@@ -99,16 +97,13 @@
   }
 
   &-horizontal {
-
     .swiper-pagination-bullets {
       bottom: 0;
     }
   }
 
   .swiper-slide--3 {
-
     .carousel__img {
-
       img {
         height: 420px;
       }
@@ -118,7 +113,8 @@
 
 .testimonials {
   position: relative;
-  background: url(../../assets/img/austin-distel-jpHw8ndwJ_Q-unsplash.jpg) center center scroll no-repeat;
+  background: url(../../assets/img/austin-distel-jpHw8ndwJ_Q-unsplash.jpg)
+    center center scroll no-repeat;
   background-size: cover;
   height: 80vh;
   z-index: 10;
@@ -168,14 +164,14 @@
     &__img {
       border: 1px solid transparent;
       border-radius: 50%;
-      background: url("../../assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash\ \(1\).jpg") center center scroll no-repeat;
+      background: url("../../assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash\ \(1\).jpg")
+        center center scroll no-repeat;
       background-size: cover;
       width: 59px;
       height: 59px;
     }
 
     &__info {
-
       h4 {
         font-size: 1.1rem;
         margin-bottom: 0;
@@ -204,19 +200,16 @@
       height: 4px;
       width: 10%;
       background-color: #4d6182;
-
     }
   }
 
   &__item {
-
     &__heading {
       font-size: 1.1rem;
       margin-top: 1.5rem;
     }
 
     .list-group {
-
       &-item {
         font-size: 1rem;
         padding: 0.3rem 0;
@@ -228,7 +221,7 @@
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0);
@@ -238,7 +231,7 @@
         z-index: 100;
         transition: background-color 0.6s;
       }
-      
+
       p {
         position: absolute;
         bottom: 0;
@@ -249,7 +242,6 @@
       }
 
       &:hover {
-        
         &::after {
           background-color: rgba(0, 0, 0, 0.4);
         }
@@ -260,7 +252,6 @@
       }
     }
   }
-
 }
 
 .myCard {
@@ -272,29 +263,29 @@
     border-radius: 15px;
 
     .btn {
-      padding: 1rem 1.5rem
+      padding: 1rem 1.5rem;
     }
   }
 }
 
 .loading-transition {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    
-    &__item {
-      display: block;
-      background-color: $primary;
-      height: 27vh;
-      transform-origin: top left;
-      transform: scaleX(0);
-      margin: -10px 0;
-      pointer-events: none;
-      position: relative;
-      z-index: 30000;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &__item {
+    display: block;
+    background-color: $primary;
+    height: 27vh;
+    transform-origin: top left;
+    transform: scaleX(0);
+    margin: -10px 0;
+    pointer-events: none;
+    position: relative;
+    z-index: 30000;
   }
 }
 
@@ -315,11 +306,11 @@
   33.333333% {
     opacity: 1;
   }
-  
+
   40% {
     opacity: 0;
   }
-  
+
   100% {
     transform: scale(1.3);
     opacity: 0;
@@ -343,11 +334,11 @@
   33.333333% {
     opacity: 1;
   }
-  
+
   40% {
     opacity: 0;
   }
-  
+
   100% {
     transform: scale(1);
     opacity: 0;
@@ -371,11 +362,11 @@
   33.333333% {
     opacity: 1;
   }
-  
+
   40% {
     opacity: 0;
   }
-  
+
   100% {
     transform: translateY(-50px);
     opacity: 0;

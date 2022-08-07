@@ -1,23 +1,27 @@
 .navbar-cont {
-    z-index: 20000;
+  z-index: 20000;
 
-    .navbar-brand {
-        font-family: 'Saira Stencil One', cursive;
-        font-size: 1.85rem;
-    }
+  .navbar-brand {
+    font-family: "Saira Stencil One", cursive;
+    font-size: 1.85rem;
+  }
 
-    .btn {
-        padding-top: 0.2rem;
-        padding-bottom: 0.2rem;
-    }
+  .btn {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
 
-    .btn, .nav-link {
-        font-size: 0.85rem;
-    }
+  .btn,
+  .nav-link {
+    font-size: 0.85rem;
+  }
 
-    .nav-link {
-        padding-top: 0.2rem;
-        padding-bottom: 0;
+  .nav-link {
+    padding-top: 0.2rem;
+    padding-bottom: 0;
+  }
 
-    }
+  .navbar {
+    padding: 0.5rem 0;
+  }
 }

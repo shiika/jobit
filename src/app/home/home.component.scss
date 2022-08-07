@@ -18,6 +18,7 @@
         top: -4.7rem;
         width: 70%;
         overflow: hidden;
+        max-height: 40rem;
 
         &:nth-child(1) {
           img {
@@ -72,6 +73,7 @@
   padding-top: 4rem;
   padding-bottom: 4rem;
   background-color: #f5f6f7;
+  margin-top: 10rem;
 
   &__desc {
     color: $heading-color;

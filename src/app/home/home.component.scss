@@ -48,6 +48,19 @@
     &__desc {
       overflow: hidden;
 
+      &__typed {
+        background-image: linear-gradient(
+          43deg,
+          #4158d0 0%,
+          #50c873 79%,
+          #c3ff70 90%
+        );
+
+        background-clip: unset;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
       .input-group > .form-control {
         flex: 5 1 auto;
         height: calc(2em + 1rem + 2px);

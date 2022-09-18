@@ -36,7 +36,6 @@
     "swiper": "^6.1.1",
     "typed.js": "^2.0.12",
     "tslib": "^2.0.0",
-    "typed.js": "^2.0.12",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
